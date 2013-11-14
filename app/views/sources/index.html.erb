@@ -1,0 +1,38 @@
+
+<% require "feedzirra" %> 
+
+<h1>Listing sources</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rss</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sources.each do |source| %>
+  <tr>
+    <td><%= source.name %></td>
+    <td><%= source.rss %></td>
+    <td><%= link_to 'Show', source %></td>
+    <td><%= link_to 'Edit', edit_source_path(source) %></td>
+    <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Source', new_source_path %>
+
+<br><br> <h1>Feed Items Start Here</h1>
+
+<% @feeditems.each do |item| %>
+
+<a href="<%= item.url %>"><%= item.title %></a><br>
+<%= item.published %>
+<br><br>
+
+<% end %>
