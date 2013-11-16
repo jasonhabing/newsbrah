@@ -1,17 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
-gem 'feedzirra'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rails', '3.2.12'
+  gem 'feedzirra'
+
 end
 
 group :production do
+  
   gem 'pg'
+  gem 'rails', '3.2.12'
+  gem 'feedzirra'
+
 end
 
 # Gems used only for assets and not required
