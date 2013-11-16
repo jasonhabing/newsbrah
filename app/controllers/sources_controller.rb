@@ -4,15 +4,22 @@ class SourcesController < ApplicationController
   def index
     @sources = Source.all
 
-    @feeditems = FeedItem.all
+    #display feed items in order of when they were published
+    @feeditems = FeedItem.order("published DESC").all
+
+    # update all feeds everytime the /sources page is loaded
+    # this is causing a heavy load time and should be moved somewhere more efficient
+    # @sources.each do |source|
+    #   rss = source.rss
+    #   FeedItem.update_from_feed(rss)
+    # end
+
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sources }
     end
   end
-
-
 
 
   # GET /sources/1

@@ -1,6 +1,6 @@
 class FeedItem < ActiveRecord::Base
 
-	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid
+	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource
 
   def self.update_from_feed(feed_url)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
@@ -30,8 +30,8 @@ class FeedItem < ActiveRecord::Base
           :summary       => entry.summary,
           # :content 		 => entry.content,
           # :categories 	 => entry.categories,
-          :guid          => entry.id
-
+          :guid          => entry.id,
+          :feedsource    => URI.parse(entry.url).host
         )
       end
     end

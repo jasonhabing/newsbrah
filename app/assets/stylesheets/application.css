@@ -10,4 +10,28 @@
  *
  *= require_self
  *= require_tree .
- */
+ */ 
+
+.feedlink {
+
+color: black;
+font-size: 26px;
+padding-bottom: 50px;
+
+}
+
+.feedpublished {
+
+color: gray;
+font-size: 18px;
+display: inline;
+
+}
+
+.feedsource {
+
+color: gray;
+font-size: 12px;
+display: inline;
+
+}
