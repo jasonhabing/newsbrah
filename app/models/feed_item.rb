@@ -25,9 +25,9 @@ class FeedItem < ActiveRecord::Base
         create!(
           :title         => entry.title,
           :url         	 => entry.url,
-          :published 	 => entry.published,
-          :author		 => entry.author,
-          :summary       => entry.summary,
+          :published 	   => entry.published,
+          :author		     => entry.author,
+          # :summary       => entry.summary,
           # :content 		 => entry.content,
           # :categories 	 => entry.categories,
           :guid          => entry.id,
