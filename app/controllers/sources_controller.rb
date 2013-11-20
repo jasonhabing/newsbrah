@@ -5,8 +5,7 @@ class SourcesController < ApplicationController
     @sources = Source.all
 
     #display feed items in order of when they were published
-    #@feeditems = FeedItem.find( :all, :order => "published DESC", :limit => 50)
-    @feeditems = FeedItem.find( :all, :limit => 50)
+    @feeditems = FeedItem.find( :all, :order => "published DESC", :limit => 50)
 
 
     # Story.find( :all, :order => "created_at DESC" , :limit => 11)
