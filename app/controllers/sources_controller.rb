@@ -8,6 +8,7 @@ class SourcesController < ApplicationController
     #@feeditems = FeedItem.find( :all, :order => "published DESC", :limit => 50)
     @feeditems = FeedItem.find( :all, :limit => 50)
 
+    FeedItem.delete_all
 
 
     # Story.find( :all, :order => "created_at DESC" , :limit => 11)
