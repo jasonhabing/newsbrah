@@ -5,7 +5,7 @@ class SourcesController < ApplicationController
     @sources = Source.all
 
     #display feed items in order of when they were published
-    @feeditems = FeedItem.order("published DESC").all
+    @feeditems = FeedItem.order(:published).reverse_order.all
 
     # update all feeds everytime the /sources page is loaded
     # this is causing a heavy load time and should be moved somewhere more efficient
