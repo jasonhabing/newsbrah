@@ -1,7 +1,7 @@
 class FixDateOnFeedItem < ActiveRecord::Migration
   def up
-    change_table :feed_items do |t|  
-    t.change :published, :datetime
+    remove_column :feed_items, :published
+    add_column :feed_items, :published, :datetime
     end
   end
 
