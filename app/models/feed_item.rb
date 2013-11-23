@@ -2,11 +2,11 @@ class FeedItem < ActiveRecord::Base
 
 	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource
 
-  validates :title, length: { maximum: 250 }
-  validates :url, length: { maximum: 250 }
-  validates :author, length: { maximum: 250 }
-  validates :guid, length: { maximum: 250 }
-  validates :feedsource, length: { maximum: 250 }
+  validates :title, length: { maximum: 250 }, presence: true
+  validates :url, length: { maximum: 250 }, presence: true
+  validates :author, length: { maximum: 250 }, presence: true
+  validates :guid, length: { maximum: 250 }, presence: true
+  validates :feedsource, length: { maximum: 250 }, presence: true
 
 
   def self.update_from_feed(feed_url)
@@ -48,7 +48,7 @@ class FeedItem < ActiveRecord::Base
         :feedsource => URI.parse(entry.url).host
         )
 
-      if newfeeditem.valid?
+      if newfeeditem.valid?  
         newfeeditem.save
       end
 
