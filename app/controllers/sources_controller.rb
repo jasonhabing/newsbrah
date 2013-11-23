@@ -5,7 +5,7 @@ class SourcesController < ApplicationController
     @sources = Source.all
 
     #display feed items in order of when they were published
-    @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
+    @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 100)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SourcesController < ApplicationController
   end
 
   def updatefeeds
-     @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
+     @feeditems = FeedItem.find( :all, :order => "published DESC" )
      @sources = Source.all
      # create parsed words table
      @feeditems.each do |feed|
