@@ -2,7 +2,21 @@
 <% require "feedzirra" %> 
 <% require "csv" %>
 
-<h1 style="font-size: 24px; color: gray;">News Sources to Pull</h1>
+
+
+
+<h1 style="font-size: 24px; color: gray;">Navigation Links:</h1>
+
+<%= link_to 'Add a Source', new_source_path %>
+ &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<%= link_to 'Update and process feeds', updatefeeds_path %>
+ &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="/updatefeeds.csv">Download All Feed Items To CSV</a>
+ &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+ <%= link_to 'View Feed', feeds_path %>
+ <br><br>
+
+<h1 style="font-size: 24px; color: gray;">List Of News Sources</h1>
 
 <table>
   <tr>
@@ -22,7 +36,7 @@
        sourcerss = source.rss 
        feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
         if feed.is_a? Fixnum %>
-       <span style="color:red">Errors in Feed</span> 
+       <span style="color:red; font-size: 10px;">Couldn't Pull Feed</span> 
     <%  end %>
 
     <% unless feed.is_a? Fixnum %>
@@ -41,29 +55,11 @@
 <% end %>
 </table>
 
+
 <br />
 
-<%= link_to 'Add a Source', new_source_path %>
- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<%= link_to 'Update and process feeds', updatefeeds_path %>
- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="/updatefeeds.csv">Download All Feed Items To CSV</a>
 
-<br><br> <h1 style="font-size: 24px; color: gray;">Recent News</h1>
 
-<% @feeditems.each do |item| %>
-<br><br>
-<a href="<%= item.url %>" class="feedlink"><%= item.title %></a><br>
-<div class="feedpublished">
-  <%= 
-  unless item.published.nil?
-  time_ago_in_words(item.published) 
-  end
-  %> ago</div> | 
-<div class="feedsource"><%= item.feedsource %></div>
-<br><br>
-
-<% end %>
 
 
 

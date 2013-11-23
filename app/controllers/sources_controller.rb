@@ -13,6 +13,23 @@ class SourcesController < ApplicationController
     end
   end
 
+  def feed
+
+    @sources = Source.all
+
+    #display feed items in order of when they were published
+    @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 100)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sources }
+    end
+  
+
+
+  end
+
+
   def updatefeeds
      @feeditems = FeedItem.find( :all, :order => "published DESC" )
 
