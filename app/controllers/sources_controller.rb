@@ -7,7 +7,15 @@ class SourcesController < ApplicationController
     #display feed items in order of when they were published
     @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sources }
+    end
+  end
 
+  def updatefeeds
+@feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
+     @sources = Source.all
     # create parsed words table
     @feeditems.each do |feed|
 
@@ -64,11 +72,8 @@ class SourcesController < ApplicationController
     end
 
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sources }
-    end
   end
+
 
 
   # GET /sources/1
