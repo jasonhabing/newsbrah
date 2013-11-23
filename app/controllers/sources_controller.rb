@@ -15,6 +15,8 @@ class SourcesController < ApplicationController
 
   def updatefeeds
      @feeditems = FeedItem.find( :all, :order => "published DESC" )
+
+
      @sources = Source.all
      # create parsed words table
      @feeditems.each do |feed|
@@ -71,6 +73,13 @@ class SourcesController < ApplicationController
       FeedItem.update_from_feed(rss)
     end
 
+    @feeditemsforcsv = FeedItem.order(:title)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @sources }
+      format.csv { render text: @feeditemsforcsv.to_csv}
+    end
 
   end
 

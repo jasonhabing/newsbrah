@@ -1,5 +1,6 @@
 
 <% require "feedzirra" %> 
+<% require "csv" %>
 
 <h1 style="font-size: 24px; color: gray;">News Sources to Pull</h1>
 
@@ -42,9 +43,11 @@
 
 <br />
 
-<%= link_to 'Add a Source', new_source_path, class:"btn" %>
+<%= link_to 'Add a Source', new_source_path %>
  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<%= link_to 'Update and process feeds', updatefeeds_path, class:"btn" %>
+<%= link_to 'Update and process feeds', updatefeeds_path %>
+ &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="/updatefeeds.csv">Download All Feed Items To CSV</a>
 
 <br><br> <h1 style="font-size: 24px; color: gray;">Recent News</h1>
 
