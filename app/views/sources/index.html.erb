@@ -24,9 +24,11 @@
        <span style="color:red">Errors in Feed</span> 
     <%  end %>
     <% sample = feed.entries.first %>
+    <% unless feed.is_a? Fixnum %>
     <% if sample.published.nil? %>
        <span style="color:red;font-size: 12px;">Published date missing</span> 
     <%  end %>
+    <% end %>
    </td>
     <!-- <td><%= link_to 'Show', source %></td> -->
     <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
