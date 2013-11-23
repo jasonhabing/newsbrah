@@ -20,7 +20,7 @@
       <%
        sourcerss = source.rss 
        feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
-       if feed == 0 %>
+       if feed.is_a? Fixnum %>
        <span style="color:red">Errors in Feed</span> 
     <%  end %>
    </td>

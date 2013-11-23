@@ -12,7 +12,7 @@ class FeedItem < ActiveRecord::Base
   def self.update_from_feed(feed_url)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
 
-    if feed != 0    
+    unless feed.is_a? Fixnum    
 
     add_entries(feed.entries)
 
