@@ -16,6 +16,14 @@
   <tr>
     <td><%= source.name %></td>
     <td><%= source.rss %></td>
+    <td style="width: 100px">
+      <%
+       sourcerss = source.rss 
+       feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
+       if feed == 0 %>
+       <span style="color:red">Errors in Feed</span> 
+    <%  end %>
+   </td>
     <!-- <td><%= link_to 'Show', source %></td> -->
     <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
     <td>&nbsp;&nbsp;|&nbsp;&nbsp;</td>

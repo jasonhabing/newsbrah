@@ -11,8 +11,15 @@ class FeedItem < ActiveRecord::Base
 
   def self.update_from_feed(feed_url)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
+
+    if feed != 0    
+
     add_entries(feed.entries)
+
   end
+  end
+
+
   
   def self.update_from_feed_continuously(feed_url, delay_interval = 15.minutes)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
@@ -29,15 +36,22 @@ class FeedItem < ActiveRecord::Base
 
   def self.add_entries(entries)
     entries.each do |entry|
+      
       unless FeedItem.exists?(:guid => entry.id)
       
-      newfeeditem = FeedItem.new(:title => entry.title, :url => entry.url, :published => entry.published, :author => entry.author, :guid => entry.id, :feedsource => URI.parse(entry.url).host)
+      newfeeditem = FeedItem.new(
+        :title => entry.title, 
+        :url => entry.url, 
+        :published => entry.published, 
+        :author => entry.author, 
+        :guid => entry.id, 
+        :feedsource => URI.parse(entry.url).host
+        )
 
       if newfeeditem.valid?
-
         newfeeditem.save
-
       end
+
       end
     end
   end
