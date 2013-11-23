@@ -44,7 +44,11 @@
 <br><br>
 <a href="<%= item.url %>" class="feedlink"><%= item.title %></a><br>
 <div class="feedpublished">
-  <%= time_ago_in_words(item.published) %> ago</div> | 
+  <%= 
+  unless item.published.nil?
+  time_ago_in_words(item.published) 
+  end
+  %> ago</div> | 
 <div class="feedsource"><%= item.feedsource %></div>
 <br><br>
 

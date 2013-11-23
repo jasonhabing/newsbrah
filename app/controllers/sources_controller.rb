@@ -14,10 +14,10 @@ class SourcesController < ApplicationController
   end
 
   def updatefeeds
-@feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
+     @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 10000)
      @sources = Source.all
-    # create parsed words table
-    @feeditems.each do |feed|
+     # create parsed words table
+     @feeditems.each do |feed|
 
       feeditemid = feed[:id]
 
