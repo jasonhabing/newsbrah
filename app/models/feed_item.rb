@@ -2,6 +2,13 @@ class FeedItem < ActiveRecord::Base
 
 	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource
 
+  validates :title, length: { maximum: 250 }
+  validates :url, length: { maximum: 250 }
+  validates :author, length: { maximum: 250 }
+  validates :guid, length: { maximum: 250 }
+  validates :feedsource, length: { maximum: 250 }
+
+
   def self.update_from_feed(feed_url)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
     add_entries(feed.entries)
@@ -19,22 +26,44 @@ class FeedItem < ActiveRecord::Base
   
   private
   
+
   def self.add_entries(entries)
     entries.each do |entry|
-      unless exists? :guid => entry.id
-        create!(
-          :title         => entry.title,
-          :url         	 => entry.url,
-          :published 	   => entry.published,
-          :author		     => entry.author,
-          # :summary       => entry.summary,
-          # :content 		 => entry.content,
-          # :categories 	 => entry.categories,
-          :guid          => entry.id,
-          :feedsource    => URI.parse(entry.url).host
-        )
+      unless FeedItem.exists?(:guid => entry.id)
+      
+      newfeeditem = FeedItem.new(:title => entry.title, :url => entry.url, :published => entry.published, :author => entry.author, :guid => entry.id, :feedsource => URI.parse(entry.url).host)
+
+      if newfeeditem.valid?
+
+        newfeeditem.save
+
+      end
       end
     end
   end
+
+
+  # THIS IS THE OLD ADD ENTRIES METHOD, WHICH WAS REPLACED BY A METHOD WITH VALIDATIONS
+  # def self.add_entries(entries)
+  #   entries.each do |entry|
+  #     unless exists? :guid => entry.id
+  #       create!(
+  #         :title         => entry.title,
+  #         :url         	 => entry.url,
+  #         :published 	   => entry.published,
+  #         :author		     => entry.author,
+  #         # :summary       => entry.summary,
+  #         # :content 		 => entry.content,
+  #         # :categories 	 => entry.categories,
+  #         :guid          => entry.id,
+  #         :feedsource    => URI.parse(entry.url).host
+  #       )
+  #     end
+  #   end
+  # end
+
+
+
+
 end
 

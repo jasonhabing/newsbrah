@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  feeditemid: 1
+  word1: MyString
+  word2: MyString
+  word3: MyString
+  word4: MyString
+  word5: MyString
+  word6: MyString
+  word7: MyString
+  word8: MyString
+  word9: MyString
+  word10: MyString
+  word11: MyString
+  word12: MyString
+  word13: MyString
+  word14: MyString
+  word15: MyString
+  word16: MyString
+  word17: MyString
+  word18: MyString
+  word19: MyString
+  word20: MyString
+
+two:
+  feeditemid: 1
+  word1: MyString
+  word2: MyString
+  word3: MyString
+  word4: MyString
+  word5: MyString
+  word6: MyString
+  word7: MyString
+  word8: MyString
+  word9: MyString
+  word10: MyString
+  word11: MyString
+  word12: MyString
+  word13: MyString
+  word14: MyString
+  word15: MyString
+  word16: MyString
+  word17: MyString
+  word18: MyString
+  word19: MyString
+  word20: MyString
