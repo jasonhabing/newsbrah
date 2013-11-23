@@ -20,15 +20,17 @@
       <%
        sourcerss = source.rss 
        feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
-       if feed.is_a? Fixnum %>
+        if feed.is_a? Fixnum %>
        <span style="color:red">Errors in Feed</span> 
     <%  end %>
-    <% sample = feed.entries.first %>
+
     <% unless feed.is_a? Fixnum %>
+    <% sample = feed.entries.first %>
     <% if sample.published.nil? %>
-       <span style="color:red;font-size: 12px;">Published date missing</span> 
+       <span style="color:red;font-size: 12px;">Published date missing</span>
     <%  end %>
     <% end %>
+    
    </td>
     <!-- <td><%= link_to 'Show', source %></td> -->
     <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
