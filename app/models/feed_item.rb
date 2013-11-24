@@ -4,16 +4,15 @@ class FeedItem < ActiveRecord::Base
 
   validates :title, length: { maximum: 250 }, presence: true
   validates :url, length: { maximum: 250 }, presence: true
-  validates :author, length: { maximum: 250 }, presence: true
+  validates :author, length: { maximum: 250 }
   validates :guid, length: { maximum: 250 }, presence: true
-  validates :feedsource, length: { maximum: 250 }, presence: true
+  validates :feedsource, length: { maximum: 250 }
 
 
   def self.update_from_feed(feed_url)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
 
     unless feed.is_a? Fixnum    
-
     add_entries(feed.entries)
 
   end
