@@ -14,6 +14,9 @@
 <a href="/updatefeeds.csv">Download All Feed Items To CSV</a>
  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
  <%= link_to 'View Feed', feeds_path %>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+ <%= link_to 'Source Report', sourcereport_path %>
+
  <br><br>
 
 <h1 style="font-size: 24px; color: gray;">List Of News Sources</h1>
@@ -32,20 +35,6 @@
     <td><%= source.name %></td>
     <td><%= source.rss %></td>
     <td style="width: 100px">
-      <%
-       sourcerss = source.rss 
-       feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
-        if feed.is_a? Fixnum %>
-       <span style="color:red; font-size: 10px;">Couldn't Pull Feed</span> 
-    <%  end %>
-
-    <% unless feed.is_a? Fixnum %>
-    <% sample = feed.entries.first %>
-    <% if sample.published.nil? %>
-       <span style="color:red;font-size: 12px;">Published date missing</span>
-    <%  end %>
-    <% end %>
-    
    </td>
     <!-- <td><%= link_to 'Show', source %></td> -->
     <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>

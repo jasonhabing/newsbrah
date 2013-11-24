@@ -1,0 +1,54 @@
+<br><br>
+<%= link_to "Back To Source List", sources_path %>
+<br>
+<h1 style="font-size: 24px; color: gray;">Source Report</h1>
+
+<table>
+  <tr>
+    <th style="width: 200px; text-align: left;">Name</th>
+    <th style="width: 600px; text-align: left;">RSS Feed Link</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+
+
+<% @sources.each do |source| %>
+  <tr>
+    <td><%= source.name %></td>
+    <td><%= source.rss %></td>
+
+    <td><%=
+
+    %></td>
+
+
+    <td style="width: 100px">
+      <%
+       sourcerss = source.rss 
+       feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
+        if feed.is_a? Fixnum %>
+       <span style="color:red; font-size: 10px;">Couldn't Pull Feed</span> 
+    <%  end %>
+    <% unless feed.is_a? Fixnum %>
+    <% sample = feed.entries.first %>
+    <% if sample.published.nil? %>
+       <span style="color:red;font-size: 12px;">Published date missing</span>
+    <%  end %>
+
+    <% end %>
+    
+   </td>
+    <!-- <td><%= link_to 'Show', source %></td> -->
+    <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
+    <td>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+    <td><%= link_to 'Delete', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+
+
+
+</table>
+

@@ -2,6 +2,7 @@ NewsApp::Application.routes.draw do
   resources :sources
   match '/updatefeeds' => 'sources#updatefeeds'
   match '/feeds' => 'sources#feed'
+  match '/sourcereport' => 'sources#sourcereport'
 
 
   # The priority is based upon order of creation:
