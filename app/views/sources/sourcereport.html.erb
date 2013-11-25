@@ -7,45 +7,54 @@
 
 
 <table>
+
   <tr>
     <th style="width: 200px; text-align: left;">Name</th>
-    <th style="width: 600px; text-align: left;">RSS Feed Link</th>
+    <th style="width: 500px; text-align: left;">RSS Feed Link</th>
+    <th style="width: 100px; text-align: left;">Status</th>
+    <th>Count</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-
-
-
 <% @sources.each do |source| %>
   <tr>
     <td><%= source.name %></td>
-    <td><%= source.rss %></td>
-
-    <td><%=
-
-    %></td>
+    <td style="width: 400px; font-size: 10px;"><%= source.rss %></td>
 
 
     <td style="width: 100px">
-      <%
-       sourcerss = source.rss 
-       feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
-        if feed.is_a? Fixnum %>
-       <span style="color:red; font-size: 10px;">Couldn't Pull Feed</span> 
-    <%  end %>
-    <% unless feed.is_a? Fixnum %>
-    <% sample = feed.entries.first %>
-    <% if sample.published.nil? %>
-       <span style="color:red;font-size: 12px;">Published date missing</span>
-    <%  end %>
+          <%
+
+           sourcerss = source.rss 
+           feed = Feedzirra::Feed.fetch_and_parse(sourcerss) 
+           
+           if feed.is_a? Fixnum %>
+           <span style="color:red; font-size: 10px;">Couldn't Pull Feed</span> 
+           <td>-</td>
+           <% else %>
+           <span style="color:green; font-size: 10px;">Feed Pulled</span>
+           <%  end %>
+
+        <% unless feed.is_a? Fixnum %>
+          <% sample = feed.entries.first %>
+          <% samplename = URI.parse(sample.url).host %>
+          <% samplecount = FeedItem.where(:feedsource => samplename).all.count %>
+            <% if sample.published.nil? %>
+            <td>
+            <span style="color:red;font-size: 12px;">Published date missing</span>
+            </td>
+            <%  end %>
+           <td style="width: 40px;">
+           <b><%= samplecount  %></b>
+           </td> 
+
+          <% end %>
 
 
-    <% end %>
-    
    </td>
-    <!-- <td><%= link_to 'Show', source %></td> -->
+
     <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
     <td>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
     <td><%= link_to 'Delete', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
