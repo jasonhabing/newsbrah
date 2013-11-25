@@ -3,6 +3,9 @@
 <br>
 <h1 style="font-size: 24px; color: gray;">Source Report</h1>
 
+<p>Total Feed Items: <span style="font-size: 20px; margin-left: 5px;"><b><%= FeedItem.count %></b></span> </p>
+
+
 <table>
   <tr>
     <th style="width: 200px; text-align: left;">Name</th>
@@ -37,6 +40,7 @@
     <% if sample.published.nil? %>
        <span style="color:red;font-size: 12px;">Published date missing</span>
     <%  end %>
+
 
     <% end %>
     
