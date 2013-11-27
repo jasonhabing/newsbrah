@@ -98,7 +98,7 @@ class SourcesController < ApplicationController
     maxamount = params[:max].to_i
 
     #create an array to store all big words
-    @bigwords = []
+    bigwordss = []
 
     #create a new hash that has feeditem id and count of big words
   scorehash = []   
@@ -110,7 +110,7 @@ class SourcesController < ApplicationController
         feeditemwords.each do |word|
           count = morethanthree.count(word)
           if count.between?(minamount, maxamount)
-            @bigwords << word
+            bigwordss << word
             feeditemscore = feeditemscore + 1
           end
         end
@@ -121,7 +121,7 @@ class SourcesController < ApplicationController
 
       sorted = scorehash.sort_by { |k| k["score"] }
       @sortednews = sorted.reverse
-
+      @bigwords = bigwordss.uniq
 
 
 
