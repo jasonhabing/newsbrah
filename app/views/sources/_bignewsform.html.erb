@@ -1,0 +1,12 @@
+<%= form_tag("/bignews", method: "get") do %>
+  <%= label_tag(:n, "Number of Recent Feed Items To Pull:") %>
+  <%= text_field_tag(:n, params[:n]) %>
+  <%= label_tag(:small, "Small Word Exclude Count:") %>
+  <%= text_field_tag(:small, params[:small]) %>
+  <%= label_tag(:min, "Min:") %>
+  <%= text_field_tag(:min, params[:min]) %>
+  <%= label_tag(:max, "Max:") %>
+  <%= text_field_tag(:max, params[:max]) %>
+  <br>
+  <%= submit_tag("Show Big News") %>
+<% end %>

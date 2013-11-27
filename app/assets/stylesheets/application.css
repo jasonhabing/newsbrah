@@ -14,8 +14,8 @@
 
 .feedlink {
 
-color: black;
-font-size: 26px;
+color: blue;
+font-size: 18px;
 padding-bottom: 50px;
 
 }
@@ -23,7 +23,7 @@ padding-bottom: 50px;
 .feedpublished {
 
 color: gray;
-font-size: 18px;
+font-size: 12px;
 display: inline;
 
 }

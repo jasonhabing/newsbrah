@@ -1,9 +1,11 @@
 NewsApp::Application.routes.draw do
+  get "feed_item/calculate"
+
   resources :sources
   match '/updatefeeds' => 'sources#updatefeeds'
   match '/feeds' => 'sources#feed'
   match '/sourcereport' => 'sources#sourcereport'
-
+  match '/bignews' => 'sources#bignews'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -8,6 +8,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rails', '3.2.12'
   gem 'feedzirra'
+  gem 'descriptive-statistics'
 
 end
 
@@ -16,6 +17,7 @@ group :production do
   gem 'pg'
   gem 'rails', '3.2.12'
   gem 'feedzirra'
+  gem 'descriptive-statistics'
 
 end
 

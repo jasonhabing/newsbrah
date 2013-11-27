@@ -65,6 +65,8 @@ class FeedItem < ActiveRecord::Base
   end
 
 
+
+
   # THIS IS THE OLD ADD ENTRIES METHOD, WHICH WAS REPLACED BY A METHOD WITH VALIDATIONS
   # def self.add_entries(entries)
   #   entries.each do |entry|

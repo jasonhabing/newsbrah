@@ -61,9 +61,11 @@ puts "Parsing feed items..."
     end
 	puts "feed items parsed"
 
-    #make big array out of all words in the TitleWords database
+
+# /////////////
 
 
+# /////////////
 
     # update all feeds everytime the /sources page is loaded
     # this is causing a heavy load time and should be moved somewhere more efficient

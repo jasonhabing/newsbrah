@@ -1,0 +1,12 @@
+
+<table>
+	<tr>
+		<th>News Item</th>
+		<th>Big Word Count</th>
+<% @sortednews.each do |news| %>
+<tr>
+	<td><a href="<%= news["feedurl"]%>"><%= news["feedtitle"] %></a></td>
+	<td><%= news["score"] %></td>
+</tr>
+<% end %>
+<table>

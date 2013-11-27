@@ -1,19 +1,14 @@
+<div class="row">
+<div class="span3">
+<h4>Pull Big News Items:</h4><br><br>
 
-<br><br> <h1 style="font-size: 24px; color: gray;">Navigation</h1>
+<%= render 'bignewsform' %>
+</div>
 
-<%= link_to 'Add a Source', new_source_path %>
- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<%= link_to 'Update and process feeds', updatefeeds_path %>
- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="/updatefeeds.csv">Download All Feed Items To CSV</a>
- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
- <%= link_to 'View Sources', sources_path %>
- <br><br>
-
-<br><br> <h1 style="font-size: 24px; color: gray;">Recent News</h1>
-
+<div class="span6 offset1">
+<h1 style="font-size: 24px; color: gray;">Recent News</h1>
 <% @feeditems.each do |item| %>
-<br><br>
+
 <a href="<%= item.url %>" class="feedlink"><%= item.title %></a><br>
 <div class="feedpublished">
   <%= 
@@ -25,3 +20,5 @@
 <br><br>
 
 <% end %>
+</div>
+</div>
