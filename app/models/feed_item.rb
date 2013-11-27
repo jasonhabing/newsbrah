@@ -37,6 +37,7 @@ class FeedItem < ActiveRecord::Base
     entries.each do |entry|
       
       unless FeedItem.exists?(:guid => entry.id)
+      unless FeedItem.exists?(:title => entry.title)  
       
       newfeeditem = FeedItem.new(
         :title => entry.title, 
@@ -51,6 +52,7 @@ class FeedItem < ActiveRecord::Base
         newfeeditem.save
       end
 
+      end
       end
     end
   end
