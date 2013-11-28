@@ -131,6 +131,20 @@ class SourcesController < ApplicationController
       @modefreq = statsfreq.mode
        @standarddevfreq = statsfreq.standard_deviation
 
+       @bigwordscount = []
+
+      @bigwords.each do |word|
+        count = morethanthree.count(word)
+        @bigwordscount << count
+      end
+
+
+               bwstatsfreq = DescriptiveStatistics::Stats.new(@bigwordscount)
+      @meanfreqbw = bwstatsfreq.mean
+      @medianfreqbw = bwstatsfreq.median
+      @modefreqbw = bwstatsfreq.mode
+       @standarddevfreqbw = bwstatsfreq.standard_deviation
+
 
 
   end
