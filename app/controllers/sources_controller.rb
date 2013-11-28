@@ -100,6 +100,7 @@ class SourcesController < ApplicationController
     #create an array to store all big words
     bigwordss = []
 
+    @freqcountarray = []
     #create a new hash that has feeditem id and count of big words
   scorehash = []   
       latestfeeds.each do |feed|
@@ -109,6 +110,7 @@ class SourcesController < ApplicationController
         feeditemscore = 0
         feeditemwords.each do |word|
           count = morethanthree.count(word)
+          @freqcountarray << count
           if count.between?(minamount, maxamount)
             bigwordss << word
             feeditemscore = feeditemscore + 1
@@ -123,7 +125,11 @@ class SourcesController < ApplicationController
       @sortednews = sorted.reverse
       @bigwords = bigwordss.uniq
 
-
+        statsfreq = DescriptiveStatistics::Stats.new(@freqcountarray)
+      @meanfreq = statsfreq.mean
+      @medianfreq = statsfreq.median
+      @modefreq = statsfreq.mode
+       @standarddevfreq = statsfreq.standard_deviation
 
 
 
