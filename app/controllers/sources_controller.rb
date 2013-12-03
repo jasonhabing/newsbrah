@@ -149,6 +149,81 @@ class SourcesController < ApplicationController
 
   end
 
+  def top
+
+      latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 500).reverse
+      @stories = []
+
+      latestfeeds.each do |feed|
+      @stories.push({"title"=>feed.title,"id"=>feed.id})
+      end
+
+      @bigstorypairs = []
+
+      @stories.each do |storyone|
+
+      storyonearray = storyone["title"].split(" ").map { |s| s.to_s }
+
+      @stories.each do |storytwo|
+
+      storytwoarray = storytwo["title"].split(" ").map { |s| s.to_s }
+
+      storyintersect = storyonearray & storytwoarray
+      if storyintersect.size >= 4
+      unless storyone == storytwo
+
+      newarray = []
+      newarray << storyone["id"]
+      newarray << storytwo["id"]
+      @bigstorypairs << newarray
+
+      end
+      end
+      end
+      end
+
+      @pairs = []
+      @bighash = []
+
+      @finalgroupings = @bigstorypairs.each_with_object([]) do |e1, a|
+        b = a.select{|e2| (e1 & e2).any?}
+        b.each{|e2| e1.concat(a.delete(e2))}
+        e1.uniq!
+        a.push(e1)
+      end
+
+      @fg = []
+      @finalgroupings.each do |g|
+      if g.count >= 3
+      @fg << g
+      end
+      end
+
+
+      @all = []
+
+      @fg.each do |f|
+
+      na = []
+
+      f.each do |f|
+
+      feed = FeedItem.where("id"=>f)
+      id = f
+
+      na.push({"title"=>feed.first.title,"id"=>f})
+
+      end
+
+      @all << na
+
+      end
+  
+
+
+  end
+
+
   def updatefeeds
      @feeditems = FeedItem.find( :all, :order => "published DESC" )
 
