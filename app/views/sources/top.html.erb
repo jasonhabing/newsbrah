@@ -1,5 +1,16 @@
 <% @all.each do |all| %>
 
-<h4><%= all.first["title"] %></h4><br><%= all %> <br><br><br>
+<h4><a href="<%= all.first["url"] %>"><%= all.first["title"] %></a></h4>
+<p><%= 
+  unless all.first["published"].nil?
+  time_ago_in_words(all.first["published"]) 
+  end
+  %> ago </p>
+<p style="color: gray">Story mentioned by <%= all.count %> sources:</p>
+<% all.each do |all| %>
 
+<span style="color: gray"><%= all["feedsource"] %></span>&nbsp;&nbsp;<a href="<%= all["url"] %>"><%= all["title"] %></a><br>
+
+<% end %>
+<br><br><br>
 <% end %>

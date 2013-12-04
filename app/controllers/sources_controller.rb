@@ -211,7 +211,7 @@ class SourcesController < ApplicationController
       feed = FeedItem.where("id"=>f)
       id = f
 
-      na.push({"title"=>feed.first.title,"id"=>f})
+      na.push({"title"=>feed.first.title, "published"=>feed.first.published, "id"=>f,"url"=>feed.first.url, "feedsource"=>feed.first.feedsource})
 
       end
 
