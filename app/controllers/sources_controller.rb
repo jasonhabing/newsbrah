@@ -151,7 +151,7 @@ class SourcesController < ApplicationController
 
   def top
 
-      latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 2000).reverse
+      latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 800).reverse
       @stories = []
 
       latestfeeds.each do |feed|
