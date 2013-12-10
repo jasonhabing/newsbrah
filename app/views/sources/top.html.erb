@@ -1,4 +1,8 @@
-<% @all.each do |all| %>
+<% if @sortedall.empty? %>
+There are currently no big news items.
+<% else %>
+
+<% @sortedall.each do |all| %>
 
 <h4><a href="<%= all.first["url"] %>"><%= all.first["title"] %></a></h4>
 <p><%= 
@@ -13,4 +17,5 @@
 
 <% end %>
 <br><br><br>
+<% end %>
 <% end %>

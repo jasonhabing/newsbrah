@@ -151,35 +151,37 @@ class SourcesController < ApplicationController
 
   def top
 
-      latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 500).reverse
+      latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 2000).reverse
       @stories = []
 
       latestfeeds.each do |feed|
-      @stories.push({"title"=>feed.title,"id"=>feed.id})
+        @stories.push({"title"=>feed.title,"id"=>feed.id, "feedsource"=>feed.feedsource})
       end
 
       @bigstorypairs = []
-
       @stories.each do |storyone|
+        storyonetitle = storyone["title"]
+        storyonesource = storyone["feedsource"]
+        storyonearray = storyone["title"].split(" ").map { |s| s.to_s }
+           @stories.each do |storytwo|
+            storytwotitle = storytwo["title"]
+            storytwosource = storytwo["feedsource"]
 
-      storyonearray = storyone["title"].split(" ").map { |s| s.to_s }
+               storytwoarray = storytwo["title"].split(" ").map { |s| s.to_s }
 
-      @stories.each do |storytwo|
+               storyintersect = storyonearray & storytwoarray
+               if storyintersect.size >= 4
+                  unless storytwosource == storyonesource
+                  unless storyonetitle == storytwotitle                   
+                        newarray = []
+                        newarray << storyone["id"]
+                        newarray << storytwo["id"]
+                        @bigstorypairs << newarray 
+                        end
 
-      storytwoarray = storytwo["title"].split(" ").map { |s| s.to_s }
-
-      storyintersect = storyonearray & storytwoarray
-      if storyintersect.size >= 4
-      unless storyone == storytwo
-
-      newarray = []
-      newarray << storyone["id"]
-      newarray << storytwo["id"]
-      @bigstorypairs << newarray
-
-      end
-      end
-      end
+                  end
+              end
+          end
       end
 
       @pairs = []
@@ -192,33 +194,37 @@ class SourcesController < ApplicationController
         a.push(e1)
       end
 
+      #remove dupe storie sources
+      @finalgroupings.each do |g|        
+        g.each do |g2|
+            item = FeedItem.where("id"=>g2)
+            @s2 = item.first.feedsource
+        end
+      end
+
+
       @fg = []
       @finalgroupings.each do |g|
-      if g.count >= 3
-      @fg << g
-      end
+        if g.count >= 3
+          @fg << g
+        end
       end
 
 
       @all = []
-
       @fg.each do |f|
-
-      na = []
-
-      f.each do |f|
-
-      feed = FeedItem.where("id"=>f)
-      id = f
-
-      na.push({"title"=>feed.first.title, "published"=>feed.first.published, "id"=>f,"url"=>feed.first.url, "feedsource"=>feed.first.feedsource})
-
-      end
-
-      @all << na
-
+          na = []
+          f.each do |f|
+              feed = FeedItem.where("id"=>f)
+              id = f
+              na.push({"title"=>feed.first.title, "published"=>feed.first.published, "id"=>f,"url"=>feed.first.url, "feedsource"=>feed.first.feedsource})
+          end
+          @all << na
       end
   
+      @sortedall = @all.sort_by{|x| x.count}.reverse
+
+
 
 
   end
