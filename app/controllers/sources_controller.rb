@@ -183,7 +183,7 @@ class SourcesController < ApplicationController
                 end
 
                storyintersect = storyonearray2 & storytwoarray2
-               if storyintersect.size >= 4
+               if storyintersect.size >= 3
                   unless storytwosource == storyonesource
                   unless storyonetitle == storytwotitle                   
                         newarray = []
