@@ -163,13 +163,26 @@ class SourcesController < ApplicationController
         storyonetitle = storyone["title"]
         storyonesource = storyone["feedsource"]
         storyonearray = storyone["title"].split(" ").map { |s| s.to_s }
+        storyonearray2 = []
+        storyonearray.each do |ar|
+          if ar.size > 3
+            storyonearray2 << ar
+          end 
+        end
+
            @stories.each do |storytwo|
             storytwotitle = storytwo["title"]
             storytwosource = storytwo["feedsource"]
 
                storytwoarray = storytwo["title"].split(" ").map { |s| s.to_s }
+               storytwoarray2 = []
+                 storytwoarray.each do |ar|
+                    if ar.size > 3
+                  storytwoarray2 << ar
+                 end 
+                end
 
-               storyintersect = storyonearray & storytwoarray
+               storyintersect = storyonearray2 & storytwoarray2
                if storyintersect.size >= 4
                   unless storytwosource == storyonesource
                   unless storyonetitle == storytwotitle                   

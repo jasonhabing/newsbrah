@@ -5,11 +5,11 @@ There are currently no big news items.
 <% @sortedall.each do |all| %>
 
 <h4><a href="<%= all.first["url"] %>"><%= all.first["title"] %></a></h4>
-<p><%= 
+<!-- <p><%= 
   unless all.first["published"].nil?
   time_ago_in_words(all.first["published"]) 
   end
-  %> ago </p>
+  %> ago </p> -->
 <p style="color: gray">Story mentioned by <%= all.count %> sources:</p>
 <% all.each do |all| %>
 
