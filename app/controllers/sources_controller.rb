@@ -183,7 +183,12 @@ class SourcesController < ApplicationController
                 end
 
                storyintersect = storyonearray2 & storytwoarray2
+               intersectsize = storyintersect.size.to_f                             
+               totalsize = (storyonearray2.size + storytwoarray2.size).to_f
+               score = intersectsize / totalsize
+
                if storyintersect.size >= 3
+                if score >= 0.16
                   unless storytwosource == storyonesource
                   unless storyonetitle == storytwotitle                   
                         newarray = []
@@ -193,6 +198,7 @@ class SourcesController < ApplicationController
                         end
 
                   end
+                end  
               end
           end
       end
@@ -236,6 +242,8 @@ class SourcesController < ApplicationController
       end
   
       @sortedall = @all.sort_by{|x| x.count}.reverse
+
+      
 
 
 
