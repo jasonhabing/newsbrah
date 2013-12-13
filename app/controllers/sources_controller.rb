@@ -188,7 +188,9 @@ class SourcesController < ApplicationController
                score = intersectsize / totalsize
 
                if storyintersect.size >= 3
-                if score >= 0.16
+               unless storytwoarray.size > 12
+               unless storyonearray.size > 12
+               if score >= 0.16
                   unless storytwosource == storyonesource
                   unless storyonetitle == storytwotitle                   
                         newarray = []
@@ -199,6 +201,8 @@ class SourcesController < ApplicationController
 
                   end
                 end  
+              end
+              end
               end
           end
       end
@@ -385,3 +389,7 @@ class SourcesController < ApplicationController
     end
   end
 end
+
+
+
+
