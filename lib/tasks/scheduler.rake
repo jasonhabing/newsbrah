@@ -18,20 +18,7 @@ end
 #update feeds and find big items task
 
 
-task :master_update => :environment do
-
-  @sources = Source.all
-
-puts "Updating sources"
-  @sources.each do |source|
-    puts "updating #{source.rss}"   
-      rss = source.rss
-      FeedItem.update_from_feed(rss)
-    end
-puts "Sources Updated" 
-puts "....."
-
-  puts "done."
+task :update_bignews => :environment do
 
 latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).reverse
       @stories = []
