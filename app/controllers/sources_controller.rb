@@ -167,8 +167,9 @@ class SourcesController < ApplicationController
         storyonearray.each do |ar|
           if ar.size > 2
             storyonearray2 << ar
-          end 
+          end   
         end
+
 
            @stories.each do |storytwo|
             storytwotitle = storytwo["title"]
@@ -247,10 +248,14 @@ class SourcesController < ApplicationController
   
       @sortedall = @all.sort_by{|x| x.count}.reverse
 
-      
+  end
 
 
+  def top3
 
+    @bigstories = BigStory.all
+
+    @bigstories2 = BigStory.find(:all, :order => "id desc", :limit => 6).reverse
 
   end
 
