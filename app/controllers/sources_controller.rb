@@ -241,7 +241,7 @@ class SourcesController < ApplicationController
           f.each do |f|
               feed = FeedItem.where("id"=>f)
               id = f
-              na.push({"title"=>feed.first.title, "published"=>feed.first.published, "id"=>f,"url"=>feed.first.url, "feedsource"=>feed.first.feedsource})
+              na.push({"title"=>feed.first.title, "published"=>feed.first.published, "id"=>f,"url"=>feed.first.url, "feedsource"=>feed.first.feedsource, "bigstory"=>feed.first.big_story_id})
           end
           @all << na
       end
@@ -258,6 +258,9 @@ class SourcesController < ApplicationController
     @bigstories2 = BigStory.find(:all, :order => "id desc", :limit => 8).reverse
 
   end
+
+
+
 
 
   def updatefeeds

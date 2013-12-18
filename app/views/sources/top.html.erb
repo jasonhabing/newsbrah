@@ -13,7 +13,8 @@ There are currently no big news items.
 <p style="color: gray">Story mentioned by <%= all.count %> sources:</p>
 <% all.each do |all| %>
 
-<span style="color: gray"><%= all["feedsource"] %></span>&nbsp;&nbsp;<a href="<%= all["url"] %>"><%= all["title"] %></a><br>
+<span style="color: gray"><%= all["bigstory"] %>&nbsp;&nbsp;<%= all["feedsource"] %></span>&nbsp;&nbsp;<a href="<%= all["url"] %>"><%= all["title"] %></a><br>
+
 
 <% end %>
 <br><br><br>

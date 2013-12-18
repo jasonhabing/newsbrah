@@ -179,6 +179,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
      feeditem = FeedItem.where("id" => b1["id"]).first
      if feeditem.big_story == nil
        feeditem.big_story = BigStory.where("id" => uniquenum).first
+       feeditem.save
        puts "^^^^^^^^^^^^^^ Just wrote #{feeditem.title} into big story #{uniquenum} ^^^^^^^^^^^^"
      end  
     end
