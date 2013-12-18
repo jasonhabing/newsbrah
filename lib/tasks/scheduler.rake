@@ -35,7 +35,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
       @stories.each do |storyone|
         storyonetitle = storyone["title"]
         storyonesource = storyone["feedsource"]
-        storyonearray = storyone["title"].split(" ").map { |s| s.to_s }
+        storyonearray = storyone["title"].downcase.split(" ").map { |s| s.to_s }
         storyonearray2 = []
         storyonearray.each do |ar|
           if ar.size > 2
@@ -48,7 +48,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
             storytwotitle = storytwo["title"]
             storytwosource = storytwo["feedsource"]
 
-               storytwoarray = storytwo["title"].split(" ").map { |s| s.to_s }
+               storytwoarray = storytwo["title"].downcase.split(" ").map { |s| s.to_s }
                storytwoarray2 = []
                  storytwoarray.each do |ar|
                     if ar.size > 2
