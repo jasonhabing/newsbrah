@@ -255,7 +255,7 @@ class SourcesController < ApplicationController
 
     @bigstories = BigStory.all
 
-    @bigstories2 = BigStory.find(:all, :order => "id asc", :limit => 100).reverse
+    @bigstories2 = BigStory.find(:all, :order => "id desc", :limit => 100)
 
   end
 
