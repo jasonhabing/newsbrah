@@ -3,6 +3,7 @@
 <% unless story.feed_items.first == nil %>
 <br>
 <h4><%= story.feed_items.first.title %></h4>
+
 <p>Mentioned in <%= story.feed_items.count %> sources: </p>
 
 <% story.feed_items.each do |item| %>

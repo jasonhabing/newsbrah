@@ -150,13 +150,21 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
     newbig = BigStory.last
     puts "$$$$$$ Created new bigstory #{newbig} $$$$$$" 
 
+    storydates = []
+
   #put each feed item in the new big story
     b.each do |b1|
     feeditem = FeedItem.where("id" => b1["id"]).first
+    storydates << feeditem.created_at
     feeditem.big_story = newbig
     feeditem.save
     puts "%%%%%%%% Putting #{feeditem.title} in big story id #{newbig.id} %%%%%%"
     end
+
+
+    newbig.breakingdate = storydates.min
+    newbig.latestdate = storydates.max 
+    newbig.save
 
   end
 
@@ -173,16 +181,27 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
 
     uniquenum = uniquestory.find { |x| not x.nil? }
 
+    bignewsitem = BigStory.where("id" => uniquenum).first
+
+    storydates2 = []
+
     b.each do |b1|
   
      #make all the nil items the same as the first number
      feeditem = FeedItem.where("id" => b1["id"]).first
      if feeditem.big_story == nil
        feeditem.big_story = BigStory.where("id" => uniquenum).first
-       feeditem.save
+       feeditem.save       
+       storydates2 << feeditem.created_at
        puts "^^^^^^^^^^^^^^ Just wrote #{feeditem.title} into big story #{uniquenum} ^^^^^^^^^^^^"
      end  
+  
     end
+
+    unless storydates2 == nil 
+    bignewsitem.latestdate = storydates2.max     
+    end
+
   end
 
 
