@@ -211,3 +211,26 @@ end
 end
 
 
+task :update_bignewsdates => :environment do
+
+BigStory.all.each do |story|
+
+storydates = []
+
+story.feed_items.each do |feed|
+puts "adding to storydatesarray"
+storydates << feed.created_at
+end
+
+story.breakingdate = storydates.min 
+puts "Story #{story.id} breaking date set as #{storydates.min}"
+story.latestdate = storydates.max
+puts "Story #{story.id} breaking date set as #{storydates.max}"
+story.save
+puts "Story #{story.id} saved"
+
+end
+
+end
+
+
