@@ -207,36 +207,9 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
 
 end
 
-
-end
-
-
-task :update_bignewsdates => :environment do
-
-BigStory.all.each do |story|
-
-storydates = []
-
-story.feed_items.each do |feed|
-puts "adding to storydatesarray"
-storydates << feed.created_at
-end
-
-story.breakingdate = storydates.min 
-puts "Story #{story.id} breaking date set as #{storydates.min}"
-story.latestdate = storydates.max
-puts "Story #{story.id} breaking date set as #{storydates.max}"
-story.save
-puts "Story #{story.id} saved"
-
-end
-end
-
-task :update_images => :environment do
-
 require 'open-uri'
 
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 30)
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 10)
 
 @bigstories.each do |story| 
 
@@ -271,6 +244,32 @@ require 'open-uri'
   end
 
 end
+
+
 end
+
+
+task :update_bignewsdates => :environment do
+
+BigStory.all.each do |story|
+
+storydates = []
+
+story.feed_items.each do |feed|
+puts "adding to storydatesarray"
+storydates << feed.created_at
+end
+
+story.breakingdate = storydates.min 
+puts "Story #{story.id} breaking date set as #{storydates.min}"
+story.latestdate = storydates.max
+puts "Story #{story.id} breaking date set as #{storydates.max}"
+story.save
+puts "Story #{story.id} saved"
+
+end
+end
+
+
 
 
