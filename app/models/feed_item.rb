@@ -2,6 +2,7 @@ class FeedItem < ActiveRecord::Base
 
 	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource
   belongs_to :big_story
+  has_many :images
 
   validates :title, length: { maximum: 250 }, presence: true
   validates :url, length: { maximum: 250 }, presence: true

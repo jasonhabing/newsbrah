@@ -230,7 +230,47 @@ story.save
 puts "Story #{story.id} saved"
 
 end
+end
 
+task :update_images => :environment do
+
+require 'open-uri'
+
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 30)
+
+@bigstories.each do |story| 
+
+  story.feed_items.each do |feed|
+
+    puts "Story id is #{story.id}"
+    puts "Feed id is #{feed.id}"
+
+    url = feed.url.strip
+    puts "url made: #{url}"
+    
+    doc = Nokogiri::HTML(open(url))
+    puts "doc made"
+
+    unless doc == nil or doc.at_css('meta[property="og:image"]') ==nil  
+    p = doc.at_css('meta[property="og:image"]')['content']
+    end
+    
+    puts "picture url stored"
+
+    unless p == nil
+    unless Image.exists?(:sourceurl => p) 
+    newimage = Image.new
+    newimage.sourceurl = p
+    newimage.big_story_id = story.id
+    newimage.feed_item_id = feed.id
+    newimage.save
+    puts "#{newimage} saved"
+    end
+    end
+   
+  end
+
+end
 end
 
 

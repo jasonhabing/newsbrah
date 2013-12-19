@@ -3,8 +3,14 @@
 <% unless story.feed_items.first == nil %>
 <br>
 <h4><%= story.feed_items.first.title %></h4>
-<% unless story.breakingdate == nil or story.latestdate ==nil %>
-Broke: <%= story.breakingdate.strftime("%m/%d/%Y %I:%M") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.strftime("%m/%d/%Y %I:%M") %>
+<% unless story.images == nil %>
+<% story.images.each do |img| %>
+<img src="<%= img.sourceurl %>" width="40px">
+<% end %>
+<% end %>
+<br><br>
+<% unless story.breakingdate == nil or story.latestdate == nil %>
+Broke: <%= story.breakingdate.strftime("%m/%d/%Y %I:%M %P") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.strftime("%m/%d/%Y %I:%M %P") %>
 <% end %>
 <br><br>
 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sourceurl: MyString
+  localcopy: MyString
+  big_story_id: 1
+  feed_item_id: MyString
+
+two:
+  sourceurl: MyString
+  localcopy: MyString
+  big_story_id: 1
+  feed_item_id: MyString
