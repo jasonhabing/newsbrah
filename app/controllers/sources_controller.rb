@@ -266,6 +266,7 @@ datetime = Time.now - 12.hours
 @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now)
 
 
+
  end
 
 

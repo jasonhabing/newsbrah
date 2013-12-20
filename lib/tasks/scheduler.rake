@@ -204,6 +204,32 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
 
   end
 
+    #if the array has nil and greater than 2 numbers
+  if uniquestory.count >= 2 
+
+    uniquenum = uniquestory.find { |x| not x.nil? }
+
+    bignewsitem = BigStory.where("id" => uniquenum).first
+
+    storydates2 = []
+
+    b.each do |b1|
+  
+     #make all the items the same as the first number
+     feeditem = FeedItem.where("id" => b1["id"]).first
+       feeditem.big_story = BigStory.where("id" => uniquenum).first
+       feeditem.save       
+       storydates2 << feeditem.created_at
+       puts "^^^^^^^^^^^^^^ Just wrote #{feeditem.title} into big story #{uniquenum} ^^^^^^^^^^^^"
+  
+    end
+
+    unless storydates2 == nil 
+    bignewsitem.latestdate = storydates2.max     
+    end
+
+  end
+
 
 end
 
@@ -280,7 +306,7 @@ feeditem = FeedItem.new
 puts "initiated new feeditem #{i}"
 feeditem.title = "Something huge happened in san jose #{i}"
 puts "wrote title as #{i}"
-feeditem.url = "www.newssource#{i}.com"
+feeditem.url = "http://www.newssource#{i}.com"
 puts "wrote feedsource as #{i}"
 feeditem.feedsource = "newssource#{i}.com"
 puts "wrote feedsource as #{i}"
@@ -555,12 +581,7 @@ end
   end
 
 end
-
-
-
 end
-
-
 
 
 
