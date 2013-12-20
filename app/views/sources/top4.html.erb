@@ -10,7 +10,7 @@
 <% end %>
 <br><br>
 <% unless story.breakingdate == nil or story.latestdate == nil %>
-Broke: <%= story.breakingdate.strftime("%m/%d/%Y %I:%M %P") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.strftime("%m/%d/%Y %I:%M %P") %>
+Broke: <%= story.breakingdate.localtime.strftime("%m/%d/%Y %I:%M %P") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.localtime.strftime("%m/%d/%Y %I:%M %P") %>
 <% end %>
 <br><br>
 
