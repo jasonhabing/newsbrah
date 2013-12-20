@@ -209,7 +209,7 @@ end
 
 require 'open-uri'
 
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 10)
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 80)
 
 @bigstories.each do |story| 
 
