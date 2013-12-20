@@ -261,7 +261,7 @@ class SourcesController < ApplicationController
 
  def top4
 
-datetime = Time.now - 12.hours
+datetime = Time.now - 3.hours
 
 @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now)
 
