@@ -1,0 +1,24 @@
+<% @bigstories.each do |story| %>
+
+<% unless story.feed_items.first == nil %>
+<br>
+<h4><%= story.feed_items.first.title %></h4>
+<% unless story.images == nil %>
+<% story.images.each do |img| %>
+<img src="<%= img.sourceurl %>" width="100px">
+<% end %>
+<% end %>
+<br><br>
+<% unless story.breakingdate == nil or story.latestdate == nil %>
+Broke: <%= story.breakingdate.strftime("%m/%d/%Y %I:%M %P") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.strftime("%m/%d/%Y %I:%M %P") %>
+<% end %>
+<br><br>
+
+<p>Mentioned in <%= story.feed_items.count %> sources: </p>
+
+<% story.feed_items.each do |item| %>
+
+<%= item.big_story_id %>&nbsp;&nbsp;&nbsp;<a href="<%= item.url %>"><%= item.title %></a><br>
+<% end %>
+<% end %>
+<% end %>
