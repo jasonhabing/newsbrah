@@ -265,7 +265,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
   
 
 datetime = Time.now - 14.hours
-@bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now)
+@bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
 
 
  end
