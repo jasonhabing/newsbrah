@@ -261,11 +261,9 @@ class SourcesController < ApplicationController
 
  def top4
 
-latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).reverse
-  
+  datetime = Time.now - 14.hours
+  @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
 
-datetime = Time.now - 14.hours
-@bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
 
 
  end

@@ -1,24 +1,26 @@
 <% @bigstories.each do |story| %>
+<div class="container">
+<div class="row" style="padding-bottom: 60px;">
+<div class="span3">
+	<% unless story.images.first == nil %>
+	<img src="<%= story.images.first.sourceurl %>" width="200px" style="float:left; padding-right: 20px; padding-bottom: 60px;">
+	<% end %>
+</div>
 
-<% unless story.feed_items.first == nil %>
-<br>
-<h4><%= story.feed_items.first.title %></h4>
-<% unless story.images == nil %>
-<% story.images.each do |img| %>
-<img src="<%= img.sourceurl %>" width="100px">
-<% end %>
-<% end %>
-<br><br>
-<% unless story.breakingdate == nil or story.latestdate == nil %>
-Broke: <%= story.breakingdate.localtime.strftime("%m/%d/%Y %I:%M %P") %>&nbsp;&nbsp;&nbsp;Latest: <%= story.latestdate.localtime.strftime("%m/%d/%Y %I:%M %P") %>
-<% end %>
-<br><br>
 
-<p>Mentioned in <%= story.feed_items.count %> sources: </p>
+<div class="span9">
+	<h4 style="font-size: 30px"><%= story.feed_items.first.title %></h4>
+	<p style="font-size: 24px; padding-top: 10px;">Mentioned in <%= story.feed_items.count %> news sources. </p>
+	
+	<% unless story.breakingdate == nil or story.latestdate == nil %>
+	<p style="color: gray;">First Broke: <%= story.created_at.localtime.strftime("%m/%d/%Y %I:%M %P") %></p>
+	
+	<% story.feed_items[1..6].each do |item| %>
 
-<% story.feed_items.each do |item| %>
-
-<%= item.big_story_id %>&nbsp;&nbsp;&nbsp;<a href="<%= item.url %>"><%= item.title %></a><br>
-<% end %>
-<% end %>
+	<a href="<%= item.url %>"><%= item.title %></a><br>
+	<span style="font-size: 11px; color: gray;"><%= item.feedsource %></span><br>
+	<% end %>
+	<% end %>
+</div>	
+</div>
 <% end %>
