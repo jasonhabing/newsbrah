@@ -16,31 +16,31 @@
 
 <div class="span9">
 	<h4 style="font-size: 30px; line-height: 110%;"><%= story.feed_items.first.title %></h4>
-	<p style="font-size: 24px; padding-top: 5px;">Mentioned in <%= story.feed_items.count - 1%> news sources. </p>
+	<p style="font-size: 24px; padding-top: 5px;">Mentioned in <%= story.feed_items.count %> news sources. </p>
 	
 	<% unless story.breakingdate == nil or story.latestdate == nil %>
 	<p style="color: gray;">First Broke: <%= story.created_at.localtime.strftime("%m/%d/%Y %I:%M %P") %></p>
 	
-	<% story.feed_items[1..6].each do |item| %>
+	<% story.feed_items[0..5].each do |item| %>
 
 	<a href="<%= item.url %>" style="padding-bottom: 10px"><%= item.title %></a>
 	<span style="font-size: 11px; color: gray; padding-top: 10px"><%= item.feedsource %></span><br>
 	<% end %>
-	<% if story.feed_items.count > 6 %>
+	<% if story.feed_items.count > 7 %>
 	
 		<div class="panel-group" id="accordion">
 		  <div class="panel panel-default">
 		    <div class="panel-heading">
 		      <h4 class="panel-title">
 		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= story.id %>">
-		          <p style="color:gray;font-size:14px;padding-top:5px;">...<%= story.feed_items.count - 7%> more sources</p>
+		          <p style="color:gray;font-size:14px;padding-top:5px;">...<%= story.feed_items.count - 6%> more sources</p>
 		        </a>
 		      </h4>
 		    </div>
 		    <div id="collapse<%= story.id %>" class="panel-collapse collapse">
 		      <div class="panel-body">
 		       
-<% story.feed_items[7..story.feed_items.count].each do |item| %>
+<% story.feed_items[6..story.feed_items.count].each do |item| %>
 
 	<a href="<%= item.url %>" style="padding-bottom: 10px"><%= item.title %></a>
 	<span style="font-size: 11px; color: gray; padding-top: 10px"><%= item.feedsource %></span><br>
