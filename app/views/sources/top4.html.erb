@@ -16,7 +16,7 @@
 
 <div class="span9">
 	<h4 style="font-size: 30px; line-height: 110%;"><%= story.feed_items.first.title %></h4>
-	<p style="font-size: 24px; padding-top: 5px;">Mentioned in <%= story.feed_items.count %> news sources. </p>
+	<p style="font-size: 24px; padding-top: 5px;">Mentioned in <%= story.feed_items.count - 1%> news sources. </p>
 	
 	<% unless story.breakingdate == nil or story.latestdate == nil %>
 	<p style="color: gray;">First Broke: <%= story.created_at.localtime.strftime("%m/%d/%Y %I:%M %P") %></p>
