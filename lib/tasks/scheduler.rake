@@ -341,7 +341,10 @@ task :update_bigstorytitles => :environment do
     unless scoreshash == nil 
       puts "got to scorehash"
       bestid = scoreshash.sort_by { |k| k["value"] }
+      puts "created bestid"
       unless bestid == nil
+      puts "creating bestid2..."
+      unless bestid.last == nil
       bestid2 = bestid.last["feedid"]
       puts "made bestid"
       besttitle = FeedItem.where("id" => bestid2).first.title
@@ -353,31 +356,11 @@ task :update_bigstorytitles => :environment do
     end
     end
     end
+    end
 end
 
 end
 
-
-task :update_bignewsdates => :environment do
-
-BigStory.all.each do |story|
-
-storydates = []
-
-story.feed_items.each do |feed|
-puts "adding to storydatesarray"
-storydates << feed.created_at
-end
-
-story.breakingdate = storydates.min 
-puts "Story #{story.id} breaking date set as #{storydates.min}"
-story.latestdate = storydates.max
-puts "Story #{story.id} breaking date set as #{storydates.max}"
-story.save
-puts "Story #{story.id} saved"
-
-end
-end
 
 # job for simulating a Big News Day
 task :make_bignewsday => :environment do
