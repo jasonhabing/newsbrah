@@ -268,8 +268,8 @@ end
   story.title = besttitle
   story.save
   puts "story #{story.id} title saved as #{story.title}"
-
 end
+
 
 require 'open-uri'
 
@@ -341,14 +341,15 @@ task :update_bigstorytitles => :environment do
       scoreshash.push({"feedid"=>feed.id,"score"=>count})
     end
 
-    bestid = scoreshash.sort_by { |k| k["value"] }.last["feedid"]
-    besttitle = FeedItem.where("id" => bestid).first.title
-    puts "best title is #{besttitle}"
+    unless scoreshash == nil
+      bestid = scoreshash.sort_by { |k| k["value"] }.last["feedid"]
+      besttitle = FeedItem.where("id" => bestid).first.title
+      puts "best title is #{besttitle}"
 
-    story.title = besttitle
-    story.save
-    puts "story #{story.id} title saved as #{story.title}"
-
+      story.title = besttitle
+      story.save
+      puts "story #{story.id} title saved as #{story.title}"
+    end
     end
 end
 
