@@ -310,6 +310,48 @@ end
 
 end
 
+task :update_bigstorytitles => :environment do
+
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 8000)
+
+@bigstories.each do |story| 
+
+  bigarray = []
+
+  story.feed_items.each do |feed|
+    feedwordsarray = feed.title.downcase.split(" ").map { |s| s.to_s }
+    feedwordsarray.each do |word|
+      bigarray << word
+    end
+  end 
+
+  bigarray.delete_if {|x| x == nil}
+
+  scoreshash = []
+
+  story.feed_items.each do |feed|
+    feedwordsarray = feed.title.downcase.split(" ").map { |s| s.to_s }
+    count = 0
+    feedwordsarray.each do |word|
+      count = count + bigarray.count(word)
+    end
+    puts "#{count}"
+    scoreshash.push({"feedid"=>feed.id,"score"=>count})
+  end
+
+  bestid = scoreshash.sort_by { |k| k["value"] }.last["feedid"]
+  besttitle = FeedItem.where("id" => bestid).first.title
+  puts "best title is #{besttitle}"
+
+  story.title = besttitle
+  story.save
+  puts "story #{story.id} title saved as #{story.title}"
+
+end
+
+
+end
+
 
 task :update_bignewsdates => :environment do
 
