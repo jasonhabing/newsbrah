@@ -342,9 +342,9 @@ task :update_bigstorytitles => :environment do
       puts "got to scorehash"
       bestid = scoreshash.sort_by { |k| k["value"] }
       unless bestid == nil
-      bestid2 = last["feedid"]
+      bestid2 = bestid.last["feedid"]
       puts "made bestid"
-      besttitle = FeedItem.where("id" => bestid).first.title
+      besttitle = FeedItem.where("id" => bestid2).first.title
       puts "best title is #{besttitle}"
 
       story.title = besttitle
