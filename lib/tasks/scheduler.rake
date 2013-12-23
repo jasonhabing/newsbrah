@@ -315,11 +315,8 @@ task :update_bigstorytitles => :environment do
 @bigstories = BigStory.find(:all, :order => "id desc", :limit => 8000)
 
 @bigstories.each do |story| 
-
   bigarray = []
-
   unless story.feed_items == nil
-
     story.feed_items.each do |feed|
       feedwordsarray = feed.title.downcase.split(" ").map { |s| s.to_s }
       feedwordsarray.each do |word|
@@ -341,14 +338,17 @@ task :update_bigstorytitles => :environment do
       scoreshash.push({"feedid"=>feed.id,"score"=>count})
     end
 
-    unless scoreshash == nil
+    unless scoreshash == nil 
+      puts "got to scorehash"
       bestid = scoreshash.sort_by { |k| k["value"] }.last["feedid"]
+      puts "made bestid"
       besttitle = FeedItem.where("id" => bestid).first.title
       puts "best title is #{besttitle}"
 
       story.title = besttitle
       story.save
       puts "story #{story.id} title saved as #{story.title}"
+ 
     end
     end
 end
