@@ -261,10 +261,17 @@ class SourcesController < ApplicationController
 
  def top4
 
+  timenumber = params[:time].to_i
+  
+  if timenumber == 0
+
   datetime = Time.now - 14.hours
   @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
-
-
+ 
+  else 
+  datetime = Time.now - timenumber.hours
+  @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
+  end
 
  end
 
