@@ -24,7 +24,7 @@
 					<% end %>
 					<% end %>
 
-					<% if story.feed_items.count > 5 %>
+					<% if story.feed_items.count > 6 %>
 
 						<div class="panel-group" id="accordion">
 						<div class="panel">
@@ -39,7 +39,7 @@
 						<div class="panel-body">
 						<%  count = story.feed_items.count - 1 %>	
 
-						<% story.feed_items[7..count].each do |item| %>
+						<% story.feed_items[6..count].each do |item| %>
 
 						<a href="<%= item.url %>" style="padding-bottom: 10px"><%= item.title %></a>
 						<span style="font-size: 11px; color: gray; padding-top: 10px"><%= item.feedsource %></span><br>
