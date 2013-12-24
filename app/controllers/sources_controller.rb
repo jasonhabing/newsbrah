@@ -165,7 +165,7 @@ class SourcesController < ApplicationController
         storyonearray = storyone["title"].downcase.split(" ").map { |s| s.to_s }
         storyonearray2 = []
         storyonearray.each do |ar|
-          if ar.size > 2
+          if ar.size > 3
             storyonearray2 << ar
           end   
         end
@@ -178,7 +178,7 @@ class SourcesController < ApplicationController
                storytwoarray = storytwo["title"].downcase.split(" ").map { |s| s.to_s }
                storytwoarray2 = []
                  storytwoarray.each do |ar|
-                    if ar.size > 2
+                    if ar.size > 3
                   storytwoarray2 << ar
                  end 
                 end
@@ -229,7 +229,7 @@ class SourcesController < ApplicationController
 
       @fg = []
       @finalgroupings.each do |g|
-        if g.count >= 3
+        if g.count >= 5
           @fg << g
         end
       end
