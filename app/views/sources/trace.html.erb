@@ -1,4 +1,7 @@
-<%= @bigstoryids %>
-<br><br>
-
 <%= @finalgroups %>
+<br><br>
+<% @allbigs.each do |big| %>
+
+<%= big.title %>&nbsp;&nbsp;<b><%= big.id %></b> <br>
+
+<% end %>

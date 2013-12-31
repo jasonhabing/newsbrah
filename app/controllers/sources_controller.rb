@@ -317,7 +317,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
       end
      
 
-
+     @allbigs = BigStory.find(:all, :order => "id desc", :limit => 800)
 
 
      end
