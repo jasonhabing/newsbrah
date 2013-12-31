@@ -253,7 +253,7 @@ class SourcesController < ApplicationController
 
 def trace
 
-@storycount = 15
+@storycount = 40  
 @bigwordmin = 5
 @bigwordlength = 1
 @wordsize = 3
@@ -317,7 +317,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
       end
      
 
-     @allbigs = BigStory.find(:all, :order => "id desc", :limit => 800)
+     @allbigs = BigStory.find(:all, :order => "id desc", :limit => 70)
 
 
      end
