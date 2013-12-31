@@ -292,7 +292,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
                commonwords = []
                bw["bigwordsarray"].each do |word1|
                  count = bigwords.count(word1)
-                          if count > 0 & bid !=  id
+                          if count > 0 && bid !=  id
                               commonwords << word1         
                            end
                          end
