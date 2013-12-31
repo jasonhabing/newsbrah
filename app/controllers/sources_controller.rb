@@ -256,6 +256,7 @@ def trace
 @storycount = 80
 @bigwordmin = 5
 @bigwordlength = 1
+@wordsize = 3
 
 bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
 
@@ -266,7 +267,9 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
         bigstorywords = []
         story.feed_items.each do |feed|
               feed.title.downcase.split(" ").map { |s| s.to_s }.each do |word|
+                   unless word.length < @wordsize
                    bigstorywords << word
+                   end
               end      
         end
         bigstorywords.each do |word|             
@@ -289,19 +292,23 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
                commonwords = []
                bw["bigwordsarray"].each do |word1|
                  count = bigwords.count(word1)
-                 if count > 0 & bid !=  id
+                          if count > 0 & bid !=  id
                               commonwords << word1         
                            end
                          end
                          if commonwords.count > @bigwordmin    
                              pair = []
+                             puts "created empty pair array"
                              pair << bid
+                             puts "added #{bid} to pair"
                              pair << id
+                             puts "added #{id} to pair"
                              @bigstoryids << pair
+                             puts "#{@bigstoryids}"
                          end
                end                       
       end
-     
+      
       @finalgroups = @bigstoryids.each_with_object([]) do |e1, a|
         b = a.select{|e2| (e1 & e2).any?}
         b.each{|e2| e1.concat(a.delete(e2))}
@@ -309,9 +316,9 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
         a.push(e1)
       end
      
-      
-      
-      
+
+
+
 
      end
 
