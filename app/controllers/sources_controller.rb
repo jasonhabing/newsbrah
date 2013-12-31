@@ -251,6 +251,73 @@ class SourcesController < ApplicationController
   end
 
 
+def trace
+
+@storycount = 80
+@bigwordmin = 5
+@bigwordlength = 1
+
+bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
+
+   @bigstorybigwords = []  
+
+   bigstories.each do |story|        
+        bsbw = []    
+        bigstorywords = []
+        story.feed_items.each do |feed|
+              feed.title.downcase.split(" ").map { |s| s.to_s }.each do |word|
+                   bigstorywords << word
+              end      
+        end
+        bigstorywords.each do |word|             
+             if bigstorywords.count(word) > @bigwordlength
+                  bsbw << word
+             end
+        end
+        unless bsbw == nil
+             @bigstorybigwords.push({"bigstoryid"=>story.id, "bigwordsarray"=>bsbw})
+        end          
+   end 
+   
+   @bigstoryids = []  
+
+   @bigstorybigwords.each do |group|         
+       id = group["bigstoryid"]
+       bigwords = group["bigwordsarray"]       
+               @bigstorybigwords.each do |bw|        
+               bid = bw["bigstoryid"]
+               commonwords = []
+               bw["bigwordsarray"].each do |word1|
+                 count = bigwords.count(word1)
+                 if count > 0 & bid !=  id
+                              commonwords << word1         
+                           end
+                         end
+                         if commonwords.count > @bigwordmin    
+                             pair = []
+                             pair << bid
+                             pair << id
+                             @bigstoryids << pair
+                         end
+               end                       
+      end
+     
+      @finalgroups = @bigstoryids.each_with_object([]) do |e1, a|
+        b = a.select{|e2| (e1 & e2).any?}
+        b.each{|e2| e1.concat(a.delete(e2))}
+        e1.uniq!
+        a.push(e1)
+      end
+     
+      
+      
+      
+
+     end
+
+
+
+
   def top3
 
     @bigstories = BigStory.all
