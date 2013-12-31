@@ -211,12 +211,7 @@ class SourcesController < ApplicationController
       @pairs = []
       @bighash = []
 
-      @finalgroupings = @bigstorypairs.each_with_object([]) do |e1, a|
-        b = a.select{|e2| (e1 & e2).any?}
-        b.each{|e2| e1.concat(a.delete(e2))}
-        e1.uniq!
-        a.push(e1)
-      end
+      
 
       #remove dupe storie sources
       @finalgroupings.each do |g|        
@@ -278,7 +273,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
              end
         end
         unless bsbw == nil
-             @bigstorybigwords.push({"bigstoryid"=>story.id, "bigwordsarray"=>bsbw})
+             @bigstorybigwords.push({"bigstoryid"=>story.id, "bigwordsarray"=>bsbw.uniq})
         end          
    end 
    
