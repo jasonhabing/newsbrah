@@ -249,7 +249,7 @@ class SourcesController < ApplicationController
 def trace
 
 @storycount = 250  
-@bigwordmin = 5
+@bigwordmin = 4
 @bigwordlength = 1
 @wordsize = 3
 
