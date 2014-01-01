@@ -1,4 +1,12 @@
-<%= @finalgroups %>
+<% @finalgroups.each do |fg| %>
+
+<% fg.each do |g| %>
+<%= BigStory.where("id"=>g).first.title %><br>
+<% end %>
+<br>
+
+
+<% end %>
 <br><br>
 <% @allbigs.each do |big| %>
 
