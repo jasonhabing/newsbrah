@@ -1,3 +1,27 @@
+<div class="container">
+  <ul class="nav nav-tabs hidden-xs">
+    <li>
+    <%= link_to 'View Feed', feeds_path %>
+    </li>
+    <li>
+    <%= link_to 'View Sources', sources_path %>
+    </li>
+    <li>
+    <%= link_to 'Add a Source', new_source_path %>
+    </li>
+    <li>
+    <%= link_to 'Source Report', sourcereport_path %>
+    </li>
+    <li>
+    <%= link_to 'Top Stories', top_path %>
+    </li>
+  </ul>
+  <ul class="nav nav-tabs visible-xs" style="background-color:#eaeaea; font-size: 16px">
+   <center>Top News</center>
+  </ul>
+
+</div>
+
 <% @bigstories.each do |story| %>
 	<% unless story.feed_items.first == nil %>
 		<div class="container">
