@@ -1,7 +1,8 @@
 <% @finalgroups.each do |fg| %>
 
 <% fg.each do |g| %>
-<%= BigStory.where("id"=>g).first.title %><br>
+<% story = BigStory.where("id"=>g).first %>
+<%= story.title %>&nbsp;<i><span style="color:gray"><%= story.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%m/%d/%Y %I:%M%P") %></i><br>
 <% end %>
 <br>
 
