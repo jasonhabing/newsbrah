@@ -358,7 +358,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
   end
 
-  
+
 
  end
 
@@ -389,6 +389,14 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   def edit
     @source = Source.find(params[:id])
   end
+
+  def story
+
+    @bigstory = BigStory.find(params[:id])
+
+     
+  end
+
 
   # POST /sources
   # POST /sources.json

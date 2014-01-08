@@ -12,6 +12,7 @@ NewsApp::Application.routes.draw do
   match '/top4' => 'sources#top4'
   match '/top5' => 'sources#top5'
   match '/trace' => 'sources#trace'
+  match 'story/:id' => 'sources#story'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,7 @@
 					<% end %>	<div style="padding-top:20px">
 					
 
-	<p style="font-size:24px;letter-spacing:-1px;color:#00496d;height:140px;"><b><a href="#"><%= story.title %></a></b><br><span style="font-size:16px;color:gray;letter-spacing:0px;"><%= story.feed_items.count %> sources are reporting this story.</span></p>
+	<p style="font-size:24px;letter-spacing:-1px;color:#00496d;height:140px;"><b><a href="/story/<%= story.id %>"><%= story.title %></a></b><br><span style="font-size:16px;color:gray;letter-spacing:0px;"><%= story.feed_items.count %> sources are reporting this story.</span></p>
 		<!-- <div style="background-color:#24577B;width:<%= (story.feed_items.count.to_f / 200 * 100).to_i %>%;height:10px;float:left">&nbsp;</div><div style="background-color:#ededed;width:<%= 100 - (story.feed_items.count.to_f / 200 * 100).to_i  %>%;height:10px;float:right">&nbsp;</div> -->
 	</div>
 

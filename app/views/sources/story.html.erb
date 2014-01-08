@@ -1,0 +1,32 @@
+<center><a href="/top5">Back To Top5</a></center>
+<div class="container" style="padding-top:20px">
+<div class="row">
+<div class="col-md-4">
+<img src="<%= @bigstory.images.first.sourceurl %>" width="100%">
+<div class="visible-md">
+<img src="<%= @bigstory.images[1].sourceurl %>" width="32%" style="padding-top:10px;">
+<img src="<%= @bigstory.images[2].sourceurl %>" width="32%" style="padding-top:10px;">
+<img src="<%= @bigstory.images[3].sourceurl %>" width="32%" style="padding-top:10px;">
+</div>
+<p style="font-size:16px;padding-top:20px;">Trace this story:</p>
+<p style="font-size:16px;padding-top:20px;"><i>Coming soon...</i></p>
+</div>
+<div class="col-md-8">
+	<p style="font-size:26px;letter-spacing:-1px;color:black;"><b><%= @bigstory.title %></b></p>
+	<p style="font-size: 20px;">Mentioned in <%= @bigstory.feed_items.count %> news sources. </p>
+					<br>
+
+
+					<% unless @bigstory.breakingdate == nil or @bigstory.latestdate == nil %>					
+					<% @bigstory.feed_items.each do |item| %>
+					<div style="padding-bottom:10px;">
+					<a href="http://<%= item.url %>" style="padding-bottom: 20px"><%= item.title %></a>
+					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.feedsource %></span>	
+					<br>
+				</div>
+					<% end %>
+					<% end %>
+
+					
+
+</div>
