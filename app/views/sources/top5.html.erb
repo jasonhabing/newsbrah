@@ -1,21 +1,21 @@
 <h1 style="text-align:center">TOP NEWS</h4>
 
-<div class="container" style="padding-top:50px;padding-bottom:20px;">
+<div style="padding-top:50px;padding-bottom:10px;">
 
 <% @bigstories.each do |story| %>
 	<% unless story.feed_items.first == nil %>
 	<% unless story.images.first == nil %>
 	<div class="col-md-4 clearfix" style="text-align:left;padding-bottom:50px;">	
 	<% unless story.images.first == nil %>
-					<img src="<%= story.images.first.sourceurl %>" width="100%" >
+					<img src="<%= story.images.first.sourceurl %>" width="100%">
 					<% end %>	<div style="padding-top:20px">
 					
-	<div style="background-color:#24577B;width:<%= (story.feed_items.count.to_f / 200 * 100).to_i %>%;height:10px;float:left">&nbsp;</div><div style="background-color:#ededed;width:<%= 100 - (story.feed_items.count.to_f / 200 * 100).to_i  %>%;height:10px;float:right">&nbsp;</div>
+
+	<p style="font-size:24px;letter-spacing:-1px;color:#00496d;height:140px;"><b><a href="#"><%= story.title %></a></b><br><span style="font-size:16px;color:gray;letter-spacing:0px;"><%= story.feed_items.count %> sources are reporting this story.</span></p>
+		<!-- <div style="background-color:#24577B;width:<%= (story.feed_items.count.to_f / 200 * 100).to_i %>%;height:10px;float:left">&nbsp;</div><div style="background-color:#ededed;width:<%= 100 - (story.feed_items.count.to_f / 200 * 100).to_i  %>%;height:10px;float:right">&nbsp;</div> -->
 	</div>
 
-	<p style="font-size:12px;color:gray;padding-top:20px"><%= story.feed_items.count %> sources reporting</p>
-
-	<p style="font-size:22px;letter-spacing:-1px;height:100px"><b><%= story.title %></b></p>
+	
 	</div>
 
 <% end %>

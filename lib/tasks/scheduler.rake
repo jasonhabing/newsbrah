@@ -346,7 +346,7 @@ end
 
 feeditem = FeedItem.new 
 puts "initiated new feeditem #{i}"
-feeditem.title = "Something smaller happened in berkley #{i}"
+feeditem.title = "Something smaller happened in berkley and this title is longer #{i}"
 puts "wrote title as #{i}"
 feeditem.url = "www.newssource#{i}.com"
 puts "wrote feedsource as #{i}"
@@ -627,7 +627,7 @@ end
     puts "Story id is #{story.id}"
     puts "Feed id is #{feed.id}"
  
-    p = "/assets/borat.jpeg"
+    p = "/assets/water.jpeg"
     
     puts "picture url stored"
 

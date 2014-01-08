@@ -358,6 +358,8 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   @bigstories = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
   end
 
+  
+
  end
 
 
