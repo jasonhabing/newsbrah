@@ -393,6 +393,82 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   def story
 
     @bigstory = BigStory.find(params[:id])
+
+    @storycount = 10000  
+@bigwordmin = 4  #should be 4
+@bigwordlength = 1  
+@wordsize = 3  #should be 3
+
+bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
+
+   @bigstorybigwords = []  
+
+   bigstories.each do |story|        
+        bsbw = []    
+        bigstorywords = []
+        story.feed_items.each do |feed|
+              feed.title.downcase.split(" ").map { |s| s.to_s }.each do |word|
+                   unless word.length < @wordsize
+                   bigstorywords << word
+                   end
+              end      
+        end
+        bigstorywords.each do |word|             
+             if bigstorywords.count(word) > @bigwordlength
+                  bsbw << word
+             end
+        end
+        unless bsbw == nil
+             @bigstorybigwords.push({"bigstoryid"=>story.id, "bigwordsarray"=>bsbw.uniq})
+        end          
+   end 
+   
+   @bigstoryids = []  
+
+   @bigstorybigwords.each do |group|         
+       id = group["bigstoryid"]
+       bigwords = group["bigwordsarray"]       
+               @bigstorybigwords.each do |bw|        
+               bid = bw["bigstoryid"]
+               commonwords = []
+               bw["bigwordsarray"].each do |word1|
+                 count = bigwords.count(word1)
+                          if count > 0 && bid !=  id
+                              commonwords << word1         
+                           end
+                         end
+                         if commonwords.count > @bigwordmin    
+                             pair = []
+                             puts "created empty pair array"
+                             pair << bid
+                             puts "added #{bid} to pair"
+                             pair << id
+                             puts "added #{id} to pair"
+                             @bigstoryids << pair
+                             puts "#{@bigstoryids}"
+                         end
+               end                       
+      end
+      
+      @finalgroups = @bigstoryids.each_with_object([]) do |e1, a|
+        b = a.select{|e2| (e1 & e2).any?}
+        b.each{|e2| e1.concat(a.delete(e2))}
+        e1.uniq!
+        a.push(e1)
+      end
+     
+
+
+  @finalgroups.each do |group|
+    group.each do |gi|
+      if gi = @bigstory.id
+        @tr = group            
+      end
+    end
+  end
+
+
+
  
   end
 
