@@ -461,7 +461,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
 
   @finalgroups.each do |group|
     group.each do |gi|
-      if gi = @bigstory.id
+      if gi == @bigstory.id
         @tr = group            
       end
     end
