@@ -13,7 +13,7 @@
 					<% unless @bigstory.breakingdate == nil or @bigstory.latestdate == nil %>					
 					<% @bigstory.feed_items.each do |item| %>
 					<div style="padding-bottom:10px;">
-					<a href="http://<%= item.url %>" style="padding-bottom: 20px"><%= item.title %></a>
+					<a href="<%= item.url %>" style="padding-bottom: 20px"><%= item.title %></a>
 					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.feedsource %></span>	
 					<br>
 				</div>
