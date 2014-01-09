@@ -393,8 +393,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   def story
 
     @bigstory = BigStory.find(params[:id])
-
-     
+ 
   end
 
 
