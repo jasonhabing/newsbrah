@@ -394,7 +394,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
 
     @bigstory = BigStory.find(params[:id])
 
-    @storycount = 10000  
+    @storycount = 250  
 @bigwordmin = 4  #should be 4
 @bigwordlength = 1  
 @wordsize = 3  #should be 3
