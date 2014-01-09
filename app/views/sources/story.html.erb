@@ -20,22 +20,15 @@
 					<% end %>
 					<% end %>
 
+<!-- Inefficient trace code -->
 <% if @tr == nil %>
-
 <p style="color:gray;padding-top:10px;font-size:14px;">No Stories To Trace</p>
-
 <% else %>
-
-<% @tr.each do |t| %>
-
+<% @tr.sort_by{|e| -e}.each do |t| %>
 <% unless t == @bigstory.id %>
-
 <% story = BigStory.where("id"=>t) %>
-<div style="padding-top:10px;font-size: 24px"><%= story.first.title %><br><%= story.first.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%m/%d/%Y %I:%M%P") %></div>
-
+<p style="font-size:24px;letter-spacing:-1px;color:black;"><b><%= story.first.title %></b><br><%= story.first.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%m/%d/%Y %I:%M%P") %></div>
 <% end %>
-
 <% end %>
-
 <% end %> 
 </div>
