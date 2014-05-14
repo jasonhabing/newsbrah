@@ -1,0 +1,26 @@
+<%= @bignews %>
+
+
+<table>
+<th>Title</th>
+<th>URL</th>
+<th>Published</th>
+<th>Created</th>
+<th>Updated</th>
+<th>Feedsource</th>
+<th>BigStoryID</th>
+
+<% @feeditems.each do |feed| %>
+<tr>
+<td><a href="<%= feed.url %>"><%= feed.title %></a></td>
+<td><span style="color:blue"><%= feed.published %> </td>
+<td><%= feed.created_at %> </td>
+<td><span style="color:blue"><%= feed.updated_at %> </td>
+<td><%= feed.feedsource %> </td>
+<td><span style="color:blue"><%= feed.big_story_id %> </td>
+</tr>
+
+<% end %>
+
+</table>
+

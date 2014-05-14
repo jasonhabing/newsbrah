@@ -14,6 +14,18 @@ class SourcesController < ApplicationController
     end
   end
 
+
+  def debug
+
+    @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 100)
+
+    datetime = Time.now - 14.hours 
+    @bignews = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now).sort_by{|t| -t.feed_items.count }
+
+
+  end
+
+
   def sourcereport
     @sources = Source.all
 
