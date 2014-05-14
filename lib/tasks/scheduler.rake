@@ -280,45 +280,52 @@ end
     end
 end
 
+#commenting out code to store an image because the image fetch is buggy
 
-require 'open-uri'
+# require 'open-uri'
 
-@bigstories.each do |story| 
+# @bigstories.each do |story| 
 
-  story.feed_items.each do |feed|
+#   story.feed_items.each do |feed|
 
-    puts "Story id is #{story.id}"
-    puts "Feed id is #{feed.id}"
+#     puts "Story id is #{story.id}"
+#     puts "Feed id is #{feed.id}"
 
-    url = feed.url.strip
-    puts "url made: #{url}"
+#     url = feed.url.strip
+#     puts "url made: #{url}"
     
-    doc = Nokogiri::HTML(open(url))
-    puts "doc made"
 
-    unless doc == nil or doc.at_css('meta[property="twitter:image"]') == nil  
-    p = doc.at_css('meta[property="og:image"]')['content']
-    end
+
+#     doc = Nokogiri::HTML(open(url))
+#     puts "doc made"
+
+#     unless doc == nil or doc.at_css('meta[property="twitter:image"]') == nil  
+#     p = doc.at_css('meta[property="og:image"]')['content']
+#     end
     
-    puts "picture url stored"
+#     puts "picture url stored"
 
-    unless p == nil
-    unless Image.exists?(:sourceurl => p) 
-    newimage = Image.new
-    newimage.sourceurl = p
-    newimage.big_story_id = story.id
-    newimage.feed_item_id = feed.id
-    newimage.save
-    puts "#{newimage} saved"
-    end
-    end
+#     unless p == nil
+#     unless Image.exists?(:sourceurl => p) 
+#     newimage = Image.new
+#     newimage.sourceurl = p
+#     newimage.big_story_id = story.id
+#     newimage.feed_item_id = feed.id
+#     newimage.save
+#     puts "#{newimage} saved"
+#     end
+#     end
    
-  end
+#   end
+
+# end
+
 
 end
 
 
-end
+
+
 
 
 # job for simulating a Big News Day
