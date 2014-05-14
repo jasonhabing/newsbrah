@@ -50,6 +50,10 @@ class FeedItem < ActiveRecord::Base
         :feedsource => URI.parse(entry.url).host
         )
 
+      if newfeeditem.published == nil
+        newfeeditem.published == Time.now
+      end
+
       if newfeeditem.valid?  
         newfeeditem.save
       end

@@ -296,7 +296,7 @@ require 'open-uri'
     doc = Nokogiri::HTML(open(url))
     puts "doc made"
 
-    unless doc == nil or doc.at_css('meta[property="og:image"]') == nil  
+    unless doc == nil or doc.at_css('meta[property="twitter:image"]') == nil  
     p = doc.at_css('meta[property="og:image"]')['content']
     end
     
