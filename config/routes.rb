@@ -2,15 +2,14 @@ NewsApp::Application.routes.draw do
   get "feed_item/calculate"
 
   resources :sources
-  match '/updatefeeds' => 'sources#updatefeeds'
   match '/feeds' => 'sources#feed'
   match '/sourcereport' => 'sources#sourcereport'
-  match '/bignews' => 'sources#bignews'
-  match '/top' => 'sources#top'
-  match '/top2' => 'sources#top2'
-  match '/top3' => 'sources#top3'
+  match '/bignews' => 'sources#top4'
+  match '/top' => 'sources#top4'
+  match '/top2' => 'sources#top4'
+  match '/top3' => 'sources#top4'
   match '/top4' => 'sources#top4'
-  match '/top5' => 'sources#top5'
+  match '/top5' => 'sources#top4'
   match '/trace' => 'sources#top4'
   match 'story/:id' => 'sources#story'
   match '/debug' => 'sources#debug'

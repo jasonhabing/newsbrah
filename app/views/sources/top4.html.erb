@@ -21,28 +21,32 @@
   </ul>
 
 </div>
-
+<div class="container">
+<h1><%= Date.today.strftime("%B %d, %Y") %></h1>
+</div>
 <% @bigstories.each do |story| %>
 	<% unless story.feed_items.first == nil %>
 		<div class="container">
+			<!--
 			<div class="row" style="padding-bottom: 60px;">
+
 				<div class="col-md-3">
 					<% unless story.images.first == nil %>
-					<img src="<%= story.images.first.sourceurl %>" width="260px" class="img-responsive" style="padding-top: 10px">
+					<img src="<% story.images.first.sourceurl %>" width="260px" class="img-responsive" style="padding-top: 10px">
 					<% end %>
-				</div>
+				</div> -->
 
 
 				<div class="col-md-9">
-					<h4 style="font-size: 30px; line-height: 110%;"><%= story.title %></h4>
-					<p style="font-size: 24px; padding-top: 5px;">Mentioned in <%= story.feed_items.count %> news sources. </p>
+					<h4 style="font-size: 18px; line-height: 110%;"><b><%= story.title %></b></h4>
+					<p style="font-size: 14px; padding-top: 0px;">Mentioned in <%= story.feed_items.count %> news sources. </p>
 					
 					<% unless story.breakingdate == nil or story.latestdate == nil %>
-					<p style="color: gray;">First Broke: <%= story.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%m/%d/%Y %I:%M%P") %>&nbsp;PST</p>
+					<!--<p style="color: gray;">First Broke: <%= story.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%m/%d/%Y %I:%M%P") %>&nbsp;PST</p>-->
 					
 					<% story.feed_items[0..5].each do |item| %>
 
-					<a href="<%= item.url %>" style="padding-bottom: 10px"><%= item.title %> </a>
+					<a href="<%= item.url %>" style="padding-bottom: 10px; font-size: 12px;"><%= item.title %> </a>
 					<span style="font-size: 11px; color: gray; padding-top: 10px"><%= item.feedsource %></span>	
 					<br>
 					<% end %>
@@ -73,6 +77,7 @@
 						</div>
 						</div>
 					<% end %>
+					<br><br>
 					
 				</div>
 			</div>
