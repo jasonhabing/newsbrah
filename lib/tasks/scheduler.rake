@@ -20,18 +20,18 @@ end
 
 task :clear_olditems => :environment do
 
-@count = FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
-  {created_at: 60.days.ago}).count
+# @count = FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
+#   {created_at: 60.days.ago}).count
 
-@allfeeditems = FeedItem.all.count
+# @allfeeditems = FeedItem.all.count
 
-puts "#{@allfeeditems} total FeedItems"
-puts "#{@count} older than 60 days and no big story"
+# puts "#{@allfeeditems} total FeedItems"
+# puts "#{@count} older than 60 days and no big story"
 
 FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
   {created_at: 60.days.ago}).delete_all
 
-puts "deleted #{@count} feed items that were older than 60 days and had no big story"
+# puts "deleted #{@count} feed items that were older than 60 days and had no big story"
 
 end
 

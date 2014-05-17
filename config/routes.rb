@@ -11,7 +11,7 @@ NewsApp::Application.routes.draw do
   match '/top3' => 'sources#top3'
   match '/top4' => 'sources#top4'
   match '/top5' => 'sources#top5'
-  match '/trace' => 'sources#trace'
+  match '/trace' => 'sources#top4'
   match 'story/:id' => 'sources#story'
   match '/debug' => 'sources#debug'
 
