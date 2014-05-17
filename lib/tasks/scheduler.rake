@@ -15,12 +15,34 @@ puts "....."
   puts "done."
 end
 
+
+#delete feeditems that don't have a bigstory id that are older than 20 days
+
+task :clear_olditems => :environment do
+
+@count = FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
+  {created_at: 60.days.ago}).count
+
+@allfeeditems = FeedItem.all.count
+
+puts "#{@allfeeditems} total FeedItems"
+puts "#{@count} older than 60 days and no big story"
+
+FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
+  {created_at: 60.days.ago}).delete_all
+
+puts "deleted #{@count} feed items that were older than 60 days and had no big story"
+
+end
+
+
+
 #update feeds and find big items task
 
 
 task :update_bignews => :environment do
 
-latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 1200).reverse
+latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 600).reverse
       @stories = []
 
       puts "pulling stories..."
