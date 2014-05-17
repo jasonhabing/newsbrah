@@ -6,7 +6,7 @@ class SourcesController < ApplicationController
     @sources = Source.all
 
     #display feed items in order of when they were published
-    @feeditems = FeedItem.find( :all, :order => "published DESC" , :limit => 100)
+    @feeditems = FeedItem.find( :all, :order => "created_at DESC" , :limit => 100)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -20,7 +20,7 @@ end
 
 task :update_bignews => :environment do
 
-latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).reverse
+latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 600).reverse
       @stories = []
 
       puts "pulling stories..."
@@ -83,6 +83,9 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
       end
 
       @pairs = []
+
+
+
       @bighash = []
 
       puts "creating final groupings..."
@@ -103,7 +106,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
         end
       end
 
-      puts "putting final groupings bigger than three together"
+      puts "putting final groupings bigger than five together"
       @fg = []
       @finalgroupings.each do |g|
         if g.count >= 5
@@ -140,6 +143,7 @@ latestfeeds = FeedItem.find(:all, :order => "published desc", :limit => 600).rev
   puts "**************BigStoryArray*********"
   puts "#{uniquestory}"
 
+  puts "getting ready to make big stories"
   #if none of the feed items belong to a big story
   if uniquestory.count == 1 and uniquestory.first == nil
 
