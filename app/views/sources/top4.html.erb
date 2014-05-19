@@ -22,7 +22,7 @@
 
 </div>
 <div class="container">
-<h1><%= Date.today.strftime("%B %d, %Y") %></h1>
+<h1><%= Time.now.strftime("%B %d, %Y") %></h1>
 </div>
 <% @bigstories.each do |story| %>
 	<% unless story.feed_items.first == nil %>

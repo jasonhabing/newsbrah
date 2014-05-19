@@ -14,6 +14,13 @@ class SourcesController < ApplicationController
     end
   end
 
+  def news
+  
+    @home_feed_days_total = 5
+
+  end
+
+
 
   def debug
 
