@@ -20,7 +20,7 @@ About | Feedback<br><br>
 
 <p><b><%= startdate.strftime("%B %d, %Y") %></b></p>
 
-<% @bignews = BigStory.includes(:feed_items).where(:created_at => enddate...startdate).sort_by{|t| t.breakingdate }.reverse %>
+<% @bignews = @bignewsgroup.includes(:feed_items).where(:created_at => enddate...startdate).sort_by{|t| t.breakingdate }.reverse %>
 
 
 

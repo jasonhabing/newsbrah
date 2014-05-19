@@ -16,8 +16,15 @@ class SourcesController < ApplicationController
 
   def news
   
+
     @home_feed_days_total = 5 
     @min = params[:n].to_i
+
+    @home_feed_days = params[:n].to_i
+    datetime = Time.now - 5.days
+        @bignewsgroup = BigStory.includes(:feed_items).where(:created_at => datetime...DateTime.now)
+
+
 
   end
 
