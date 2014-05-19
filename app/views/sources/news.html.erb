@@ -22,12 +22,10 @@ About | Feedback<br><br>
 
 <% @bignews = BigStory.includes(:feed_items).where(:created_at => enddate...startdate).sort_by{|t| t.breakingdate }.reverse %>
 
-<% if @bignews.empty? %>
-<p><i>No big news</i></p>
-<% else %>
 
 
 <% @bignews.each do |news| %>
+<% if news.feed_items.count > @min %>
 <a href="<%= news.feed_items.first.url %>" style="color:blue"><%= news.title %></a> mentioned in <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= news.id %>"><%= news.feed_items.count %> sources.</a>
 <br>
 <div id="collapse<%= news.id %>" class="panel-collapse collapse">
@@ -36,10 +34,10 @@ About | Feedback<br><br>
 <% end %>
 <br>
 </div>
-
-
-
 <% end %>
+
+
+
 <% end %>
 
 <% time_subtract = time_subtract + 1 %>

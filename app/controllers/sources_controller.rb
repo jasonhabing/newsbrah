@@ -16,7 +16,8 @@ class SourcesController < ApplicationController
 
   def news
   
-    @home_feed_days_total = 5
+    @home_feed_days_total = 5 
+    @min = params[:n].to_i
 
   end
 
