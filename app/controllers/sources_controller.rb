@@ -18,7 +18,12 @@ class SourcesController < ApplicationController
   
 
     @home_feed_days_total = 5 
+
+  if params[:n] != nil
     @min = params[:n].to_i
+  else
+    @min = 10
+  end
 
     @home_feed_days = params[:n].to_i
     datetime = Time.now - 5.days
