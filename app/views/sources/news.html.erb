@@ -27,7 +27,6 @@ About | Feedback<br><br>
 <% @bignews.each do |news| %>
 <% if news.feed_items.count > @min %>
 <a href="<%= news.feed_items.first.url %>" style="color:blue"><%= news.title %></a> mentioned in <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= news.id %>"><%= news.feed_items.count %> sources.</a>
-<br>
 <div id="collapse<%= news.id %>" class="panel-collapse collapse">
 <% news.feed_items.all.each do |story| %>
 <a href="<%= story.url %>" style="color:blue; padding-left:15px"><%= story.title %></a> - <%= story.feedsource %><br>
@@ -36,7 +35,7 @@ About | Feedback<br><br>
 </div>
 <% end %>
 
-<br>
+
 
 <% end %>
 
