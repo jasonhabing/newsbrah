@@ -28,7 +28,7 @@ class SourcesController < ApplicationController
     @home_feed_days = params[:n].to_i
     datetime = Time.now - 5.days
 
-        @bignewsgroup = BigStory.where(:created_at => datetime...DateTime.now)
+    @bignewsgroup = BigStory.where(:created_at => datetime...DateTime.now)
 
 
 
