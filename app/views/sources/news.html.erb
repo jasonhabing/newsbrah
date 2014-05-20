@@ -13,7 +13,7 @@ About | Feedback<br><br>
 <% time_subtract = 0 %>
 
 <% while time_subtract <= @home_feed_days_total do %>
-<% startdate = Time.now - time_subtract.days %>
+<% startdate = Time.now.localtime - time_subtract.days %>
 <% enddate = startdate - 1.days %>
 
 
