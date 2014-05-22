@@ -3,10 +3,12 @@
 
 <p><% @bignewsgroup.each do |news| %>
 
+<% if news.feed_items.count > @min %>
 <ul>
 	<li><a href="/story/<%= news.id %>"><%= news.title %></a></li>
 	</a>
-	<li><%= news.created_at %></li>
+	<li><%= news.created_at.in_time_zone(Time.zone) %></li>
 </ul>
 <br><br>
+<% end %>
 <% end %>
