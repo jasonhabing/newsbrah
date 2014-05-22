@@ -1,14 +1,27 @@
+
+
+
+
 <p>Date range: <%= @timestart %> - <%= @timenow %><p>
 <p>Big news items:</p>
-
 <p><% @bignewsgroup.each do |news| %>
+<% @count = news.feed_items.count %>
+<% if @count > @min %>
+	<a href="/story/<%= news.id %>"><%= news.title %></a><br>
+	</a>Created: <%= news.created_at.in_time_zone(Time.zone) %><br>
+	Mentioned in <%= @count %> sources
+	<br><br>
+<% end %>
+<% end %>
 
-<% if news.feed_items.count > @min %>
-<ul>
-	<li><a href="/story/<%= news.id %>"><%= news.title %></a></li>
-	</a>
-	<li><%= news.created_at.in_time_zone(Time.zone) %></li>
-</ul>
-<br><br>
+<p>Yesterdays news</p>
+
+<p><% @bignewsgroupyesterday.each do |news| %>
+<% @count = news.feed_items.count %>
+<% if @count > @min %>
+	<a href="/story/<%= news.id %>"><%= news.title %></a><br>
+	</a>Created: <%= news.created_at.in_time_zone(Time.zone) %><br>
+	Mentioned in <%= @count %> sources
+	<br><br>
 <% end %>
 <% end %>

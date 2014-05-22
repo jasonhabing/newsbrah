@@ -18,8 +18,11 @@ class SourcesController < ApplicationController
 
     @timenow = Time.now.in_time_zone(Time.zone)
     @timestart = Time.zone.local(@timenow.year, @timenow.month, @timenow.day)
+    @yesterdaystart = @timestart - 1.days 
+
     @min = 10
     @bignewsgroup = BigStory.where(:created_at => @timestart...@timenow).sort_by{|t| -t.feed_items.count }
+    @bignewsgroupyesterday = BigStory.where(:created_at => @yesterdaystart...@timestart).sort_by{|t| -t.feed_items.count }
 
   end
 
