@@ -13,15 +13,3 @@
 	<br><br>
 <% end %>
 <% end %>
-
-<p>Yesterdays news</p>
-
-<p><% @bignewsgroupyesterday.each do |news| %>
-<% @count = news.feed_items.count %>
-<% if @count > @min %>
-	<a href="/story/<%= news.id %>"><%= news.title %></a><br>
-	</a>Created: <%= news.created_at.in_time_zone(Time.zone) %><br>
-	Mentioned in <%= @count %> sources
-	<br><br>
-<% end %>
-<% end %>
