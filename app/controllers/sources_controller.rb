@@ -14,6 +14,17 @@ class SourcesController < ApplicationController
     end
   end
 
+  def jade
+
+    @timenow = Time.now.in_time_zone(Time.zone)
+    @timestart = Time.zone.local(@timenow.year, @timenow.month, @timenow.day)
+
+    @bignewsgroup = BigStory.where(:created_at => @timestart...@timenow).sort_by{|t| -t.feed_items.count }
+
+  end
+
+
+
   def news
   
 

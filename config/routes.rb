@@ -14,6 +14,7 @@ NewsApp::Application.routes.draw do
   match 'story/:id' => 'sources#story'
   match '/debug' => 'sources#debug'
   match '/news' => 'sources#news'
+  match '/jade' => 'sources#jade'
 
 
   # The priority is based upon order of creation:

@@ -16,6 +16,31 @@ puts "....."
 end
 
 
+task :make_news => :environment do
+
+BigStory.find(:all, :order => "id desc", :limit => 5).reverse.each do |news|
+
+@id = news.id
+
+news.created_at = Time.now - 3.hours
+news.save
+
+i = 0
+
+while i < 10 do
+
+newfeeditem = FeedItem.new(:title => "A tiger has escaped from the zoo!", :guid => "tiger escaped", :url => "http://www.jasonhabing.com")
+newfeeditem.big_story_id = @id
+newfeeditem.save
+
+i = i + 1
+
+end
+end
+
+
+
+
 #delete feeditems that don't have a bigstory id that are older than 20 days
 
 task :clear_olditems => :environment do

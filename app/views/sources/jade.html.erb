@@ -1,0 +1,12 @@
+<p>Date range: <%= @timestart %> - <%= @timenow %><p>
+<p>Big news items:</p>
+
+<p><% @bignewsgroup.each do |news| %>
+
+<ul>
+	<li><a href="/story/<%= news.id %>"><%= news.title %></a></li>
+	</a>
+	<li><%= news.created_at %></li>
+</ul>
+<br><br>
+<% end %>
