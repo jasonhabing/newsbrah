@@ -37,8 +37,86 @@ i = i + 1
 
 end
 end
+end
 
 
+task :update_scores => :environment do
+
+  @bigs = BigStory.find(:all, :order => "id desc", :limit => 100)
+  @bigs.each do |big|
+    count = big.feed_items.count
+    age = (Time.now - big.created_at) / 3600
+    score = (count - 1) / (age + 2) ** 1.8
+    score.to_f
+    big.score = score
+    big.save
+  end
+
+end
+
+
+task :pull_images => :environment do
+
+
+require "net/http"
+def url_exist?(url_string)
+  url = URI.parse(url_string)
+  req = Net::HTTP.new(url.host, url.port)
+  req.use_ssl = (url.scheme == 'https')
+  path = url.path if url.path.present?
+  res = req.request_head(path || '/')
+  if res.kind_of?(Net::HTTPRedirection)
+    url_exist?(res['location']) # Go after any redirect and make sure you can access the redirected URL 
+  else
+    ! %W(4 5).include?(res.code[0]) # Not from 4xx or 5xx families
+  end
+rescue Errno::ENOENT
+  false #false if can't find the server
+rescue SocketError => se
+  false
+end
+
+
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 40).reverse
+
+@bigstories.each do |story| 
+
+  story.feed_items.each do |feed|
+    url = feed.url.strip  
+
+    
+    if url_exist?(url)
+    doc = Nokogiri::HTML(open(url))
+    puts "doc made"
+
+    unless doc == nil or doc.at_css('meta[property="twitter:image"]') == nil  
+    p = doc.at_css('meta[property="og:image"]')['content']
+    end
+    
+    puts "picture url stored"
+
+    unless p == nil
+    unless Image.exists?(:sourceurl => p) 
+    newimage = Image.new
+    newimage.sourceurl = p
+    newimage.big_story_id = story.id
+    newimage.feed_item_id = feed.id
+    newimage.save
+    puts "#{newimage} saved"
+    end
+    end
+   
+end
+end
+end
+
+end
+
+task :pull_descriptions => :environment do
+
+
+
+end
 
 
 #delete feeditems that don't have a bigstory id that are older than 20 days

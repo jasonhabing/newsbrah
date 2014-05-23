@@ -14,6 +14,16 @@ class SourcesController < ApplicationController
     end
   end
 
+  def montana
+
+    @bigs = BigStory.find(:all, :order => "score desc", :limit => 10)
+
+      
+
+  end
+
+
+
   def jade
 
     @timenow = Time.now.in_time_zone(Time.zone)

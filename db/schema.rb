@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219044943) do
+ActiveRecord::Schema.define(:version => 20140523035124) do
 
   create_table "big_stories", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20131219044943) do
     t.datetime "updated_at",   :null => false
     t.datetime "breakingdate"
     t.datetime "latestdate"
+    t.float    "score"
   end
 
   create_table "feed_items", :force => true do |t|

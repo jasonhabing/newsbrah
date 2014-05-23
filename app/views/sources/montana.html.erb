@@ -1,0 +1,8 @@
+<% @bigs.each do |big| %>
+
+	<a href="/story/<%= big.id %>"><%= big.title %></a><br>
+	<%= big.created_at %><br>
+	<%= big.score %><br>
+	<br><br>
+
+<% end %>

@@ -2,14 +2,17 @@
 
 
 
-<p>Date range: <%= @timestart %> - <%= @timenow %><p>
-<p>Big news items:</p>
+<p><%= @timestart.strftime("%B %d, %Y") %><p>
+<p>Cobiased<p>
+<p>About | Feedback <p>
 <p><% @bignewsgroup.each do |news| %>
 <% @count = news.feed_items.count %>
 <% if @count > @min %>
-	<a href="/story/<%= news.id %>"><%= news.title %></a><br>
-	</a>Created: <%= news.created_at.in_time_zone(Time.zone) %><br>
-	Mentioned in <%= @count %> sources
+	<b>Title:</b> <a href="/story/<%= news.id %>"><%= news.title %></a><br>
+	</a><b>Created:</b> <%= news.created_at.in_time_zone(Time.zone) %><br>
+	<b>Count:</b> <%= @count %> sources<br>
+	<b>Description:</b><br>
+	<b>ImageURL:</b>
 	<br><br>
 <% end %>
 <% end %>
