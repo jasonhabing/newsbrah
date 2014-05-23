@@ -275,6 +275,7 @@ latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 600).re
   #make a new big story
     puts "$$$$$$$ Create a new bigstory $$$$$$"
     newbig = BigStory.new
+    newbig.score = 0.0
     newbig.save
     newbig = BigStory.last
     puts "$$$$$$ Created new bigstory #{newbig} $$$$$$" 
