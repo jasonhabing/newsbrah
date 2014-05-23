@@ -1,8 +1,12 @@
+<div class="container" style ="padding-top:15px">
+<% i = 1 %>
 <% @bigs.each do |big| %>
-
-	<a href="/story/<%= big.id %>"><%= big.title %></a><br>
-	<%= big.created_at %><br>
-	<%= big.score %><br>
+	
+	<b><%= i %>)</b> <a href="/story/<%= big.id %>"><%= big.title %></a><br>
+	<%= big.created_at.in_time_zone(Time.zone).strftime("%B %d, %Y, %l:%M %p %Z") %><br>
+	<%= big.feed_items.count %> sources reported<br>
 	<br><br>
+	<% i = i + 1 %>
 
 <% end %>
+</div>
