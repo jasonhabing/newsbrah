@@ -246,7 +246,7 @@ end
 
 task :update_bignews => :environment do
 
-latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 600).reverse
+latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 2000).reverse
       @stories = []
 
       puts "pulling stories..."
