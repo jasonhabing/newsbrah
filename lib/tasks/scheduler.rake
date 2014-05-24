@@ -95,7 +95,8 @@ puts "calculating big stories"
     puts "BigStory #{story.id}, pulling feed items"
       story.feed_items.each do |feed|
         puts "pulling FeedItem #{feed.id}"
-        url = feed.url.strip  
+        url = feed.url.strip
+        unless url.length > 200  
         if url_exist?(url)
           doc = Nokogiri::HTML(open(url))
           puts "doc made for feed item #{feed.id}"
@@ -115,7 +116,7 @@ puts "calculating big stories"
             feed.save
             puts "picture url stored for feed item #{feed.id}"
           end
-        
+          end
        
 
         end
