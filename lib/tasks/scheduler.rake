@@ -96,7 +96,7 @@ puts "calculating big stories"
       story.feed_items.each do |feed|
         puts "pulling FeedItem #{feed.id}"
         url = feed.url.strip  
-        unless url.include? '_'
+        unless url.include? '_' or url.include? 'hartfordcourant'
         if url_exist?(url)
           doc = Nokogiri::HTML(open(url))
           puts "doc made for feed item #{feed.id}"
