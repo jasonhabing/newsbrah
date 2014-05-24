@@ -88,7 +88,7 @@ require "net/http"
   end
 
 puts "calculating big stories"
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 30).reverse
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 15).reverse
 
   @bigstories.each do |story| 
 
@@ -97,7 +97,7 @@ puts "calculating big stories"
         puts "pulling FeedItem #{feed.id}"
         url = feed.url.strip  
         puts "url is #{url}"
-        unless url.include? '_' or url.include? 'hartfordcourant' or url.include? '?' or url.include? 'nytimes'
+        unless url.include? '_' or url.include? 'hartfordcourant' or url.include? '?' or url.include? 'nytimes' or url.include? 'ChicagoTribune'
         if url_exist?(url)
           doc = Nokogiri::HTML(open(url))
           puts "doc made for feed item #{feed.id}"
