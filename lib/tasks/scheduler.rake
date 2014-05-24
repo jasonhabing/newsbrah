@@ -18,6 +18,15 @@ end
 
 task :make_news => :environment do
 
+n = 1
+while n < 10
+new = BigStory.new
+new.title = "A tiger escaped from the zoo"
+new.save
+n = n + 1
+end
+
+
 BigStory.find(:all, :order => "id desc", :limit => 5).reverse.each do |news|
 
 @id = news.id
@@ -57,7 +66,7 @@ end
 
 task :pull_images => :environment do
 
-
+require "open-uri"
 require "net/http"
 def url_exist?(url_string)
   url = URI.parse(url_string)
@@ -73,44 +82,46 @@ def url_exist?(url_string)
 rescue Errno::ENOENT
   false #false if can't find the server
 rescue SocketError => se
+  f alse
+rescue Errno::ECONNREFUSED
   false
 end
 
-
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 40).reverse
+puts "calculating big stories"
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 3).reverse
 
 @bigstories.each do |story| 
 
+puts "BigStory #{story.id}, pulling feed items"
   story.feed_items.each do |feed|
+    puts "pulling FeedItem #{feed.id}"
     url = feed.url.strip  
-
-    
     if url_exist?(url)
     doc = Nokogiri::HTML(open(url))
-    puts "doc made"
+    puts "doc made for feed item #{feed.id}"
 
-    unless doc == nil or doc.at_css('meta[property="twitter:image"]') == nil  
+    unless doc == nil or doc.at_css('meta[property="og:image"]') == nil
     p = doc.at_css('meta[property="og:image"]')['content']
+    feed.imageurl = p
+
+    unless doc == nil or doc.at_css('meta[property="og:description"]') == nil
+    d = doc.at_css('meta[property="og:description"]')['content']
+    feed.desc = d
     end
     
-    puts "picture url stored"
+    
+    feed.save
+    puts "picture url stored for feed item #{feed.id}"
+    end
+  
+ 
 
-    unless p == nil
-    unless Image.exists?(:sourceurl => p) 
-    newimage = Image.new
-    newimage.sourceurl = p
-    newimage.big_story_id = story.id
-    newimage.feed_item_id = feed.id
-    newimage.save
-    puts "#{newimage} saved"
-    end
-    end
-   
+end
 end
 end
 end
 
-end
+
 
 task :pull_descriptions => :environment do
 
