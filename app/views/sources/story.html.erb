@@ -12,7 +12,8 @@
 					<% @bigstory.feed_items.each do |item| %>
 					<div style="padding-bottom:10px;">
 					<a href="<%= item.url %>" style="padding-bottom: 20px"><%= item.title %></a>
-					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.feedsource %></span>	
+					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.feedsource %></span>	<br>
+					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.desc %></span>
 					<br>
 				</div>
 					<% end %>
