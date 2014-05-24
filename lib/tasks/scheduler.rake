@@ -88,7 +88,7 @@ require "net/http"
   end
 
 puts "calculating big stories"
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 3).reverse
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 20).reverse
 
   @bigstories.each do |story| 
 
