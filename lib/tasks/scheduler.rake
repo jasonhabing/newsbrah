@@ -97,7 +97,7 @@ puts "calculating big stories"
         puts "pulling FeedItem #{feed.id}"
         url = feed.url.strip  
         puts "url is #{url}"
-        unless url.include? '_' or url.include? 'hartfordcourant' or url.include? 'nytimes'
+        unless url.include? '_' or url.include? 'hartfordcourant' or url.include? '?' or url.include? 'nytimes'
         if url_exist?(url)
           doc = Nokogiri::HTML(open(url))
           puts "doc made for feed item #{feed.id}"
