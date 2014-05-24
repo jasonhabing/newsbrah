@@ -88,15 +88,15 @@ require "net/http"
   end
 
 puts "calculating big stories"
-@bigstories = BigStory.find(:all, :order => "id desc", :limit => 20).reverse
+@bigstories = BigStory.find(:all, :order => "id desc", :limit => 3).reverse
 
   @bigstories.each do |story| 
 
     puts "BigStory #{story.id}, pulling feed items"
       story.feed_items.each do |feed|
         puts "pulling FeedItem #{feed.id}"
-        url = feed.url.strip
-        unless url.length > 200  
+        url = feed.url.strip  
+        unless url.include? '_'
         if url_exist?(url)
           doc = Nokogiri::HTML(open(url))
           puts "doc made for feed item #{feed.id}"
@@ -116,9 +116,9 @@ puts "calculating big stories"
             feed.save
             puts "picture url stored for feed item #{feed.id}"
           end
-          end
+        
        
-
+        end
         end
       end
   end
