@@ -15,6 +15,74 @@ puts "....."
   puts "done."
 end
 
+task :find_best_feeditems => :environment do
+  def count( array )
+  array.each_with_object(Hash.new(0)){|key,hash| hash[key] += 1}
+  end
+
+
+  puts "pulling big stories to update"
+  @bigstories = BigStory.find(:all, :order => "score desc", :limit => 20).reverse 
+  @bigstories.each do |story|
+    unless story.feed_items.empty?
+      puts "starting to find best feed item for Big Story id #{story.id}..."
+      story_words_array = []
+      story.feed_items.each do |feed|
+        words = feed["title"].downcase.split(" ").map { |s| s.to_s }
+        words.each do |word|
+          story_words_array << word
+        end
+      end  
+      puts "words array is #{story_words_array}"
+      puts "counting each feed item against array..."
+      counts = count(story_words_array)
+      topwords = counts.sort_by {|_key, value| value}[0..5]
+      topwordsarray = []
+      topwords.each do |word|
+        topwordsarray << word.first
+      end
+      puts "the top words array is #{topwordsarray}"
+
+      @itemscorehash = []
+      story.feed_items.each do |feed|
+        feeditemscore = 0
+        words = feed["title"].downcase.split(" ").map { |s| s.to_s }
+        words.each do |word|
+          if topwordsarray.include? word
+            feeditemscore = feeditemscore + 1
+          end
+        end
+        puts "feed item #{feed.id} score is #{feeditemscore}"
+        @itemscorehash.push({feed.id=>feeditemscore})
+      end
+      puts "hash is #{@itemscorehash}"
+      @toptitle = @itemscorehash.sort_by {|_key, value| value}.reverse  
+      puts "feed items with top titles are #{@toptitle}"
+      @bestfeedid = nil
+      i = 0
+      while i < 1
+        @toptitle.each do |feed|
+          feedid = feed.first.first
+          puts "feed id is #{feedid}"
+          feed = FeedItem.where(:id => feedid)
+          unless feed.first.desc.nil? or feed.first.imageurl.nil?
+            @bestfeedid = feedid
+            i = i + 1
+          end
+        end
+        i = i + 1
+      end
+      
+    if @bestfeedid == nil
+      @bestfeedid = @toptitle.first.first.first
+    else
+      story.bestfeed = @bestfeedid
+      story.save
+    end
+    puts "best feed id is #{@bestfeedid}"
+    end
+  end
+end
 
 task :make_news => :environment do
 
