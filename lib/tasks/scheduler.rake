@@ -168,6 +168,8 @@ require "net/http"
     false
   rescue Errno::ECONNREFUSED
     false
+  rescue Exception
+    puts "bad url"  
   end
 
 puts "calculating big stories"

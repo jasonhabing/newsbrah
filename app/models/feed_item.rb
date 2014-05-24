@@ -16,8 +16,10 @@ class FeedItem < ActiveRecord::Base
 
     unless feed.is_a? Fixnum    
     add_entries(feed.entries)
+    end
 
-  end
+    rescue Exception
+    puts "bad feed"
   end
 
 
