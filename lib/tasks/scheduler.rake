@@ -1,4 +1,16 @@
 desc "This task is called by the Heroku scheduler add-on"
+
+task :update1 => :environment do
+
+  Rake::Task[:update_feed].invoke
+  Rake::Task[:update_bignews].invoke
+  Rake::Task[:update_scores].invoke
+  Rake::Task[:pull_images].invoke
+  Rake::Task[:find_best_feeditems].invoke
+
+end
+
+
 task :update_feed => :environment do
 
 @sources = Source.all
@@ -130,6 +142,7 @@ task :update_scores => :environment do
     big.score = score
     big.save
   end
+  puts "scores updated"
 
 end
 
