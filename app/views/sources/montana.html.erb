@@ -7,7 +7,7 @@
 	<%= big.created_at.in_time_zone(Time.zone).strftime("%B %d, %Y, %l:%M %p %Z") %><br>
 	<%= big.feed_items.count %> sources reported<br>
 	<%= feed.desc %><br>
-	<img src="<%= feed.imageurl %>">
+	<img src="<%= feed.imageurl %>" width="200px">
 	<br><br>
 	<% i = i + 1 %>
 
