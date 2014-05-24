@@ -65,7 +65,7 @@ task :find_best_feeditems => :environment do
           feedid = feed.first.first
           puts "feed id is #{feedid}"
           feed = FeedItem.where(:id => feedid)
-          unless feed.first.desc.nil? or feed.first.imageurl.nil?
+          unless feed.first.desc.nil? or feed.first.imageurl.nil? or imageurl.include? 'ndtv' or imageurl.include? 'detroitnews'
             @bestfeedid = feedid
             i = i + 1
           end
