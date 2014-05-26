@@ -23,6 +23,7 @@
 
 <!-- Stories 2 - 10 -->
 <div class="clearfix"></div>
+<% i = 0 %>
 <% big = @bigs[1..6].each do |big| %>
 <% feed = FeedItem.where(:id => big.bestfeed).first %>
 <% if feed.nil? %>
@@ -39,6 +40,10 @@
 	<%= feed.desc %>
 	</div>
 </div>
+<% i = i + 1 %>
+<% if i == (2 or 4) %>
+<div class="clearfix"></div>
+<% end %>
 <% end %>
 <div class="clearfix"></div>
 <% big = @bigs[7..9].each do |big| %>
