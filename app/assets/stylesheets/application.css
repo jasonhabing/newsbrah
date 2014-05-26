@@ -41,7 +41,63 @@ img.desaturate { -webkit-filter: grayscale(100%);
 filter: grayscale(100%);
 }
 
-img.desaturate:hover { -webkit-filter: grayscale(100%);
--moz-filter: grayscale(100%);
-filter: grayscale(0%);
+img.desaturate:hover { 
+}
+
+.header-date {
+
+	color:#bcbcbc;
+	font-size: 16px;
+	text-align: center;
+	line-height: 60px;
+}
+
+.header-links {
+
+color:#bcbcbc;
+	font-size: 16px;
+	text-align: center;
+	line-height: 60px;
+
+}
+
+.lead-title a {
+	font-size: 28px;
+	text-align: justify;
+	color: black;
+}
+
+img.lead_image {
+
+	padding-top: 10px;
+}
+
+.lead-mentions {
+	padding-top: 5px;
+	color:#bcbcbc;
+	font-size: 16px;
+}
+
+.lead-description {
+	padding-top: 10px;
+	color:#bcbcbc;
+	font-size: 16px;
+}
+
+.story-title a {
+	font-size: 22px;
+	text-align: justify;
+	color: black;
+}
+
+.story-mentions {
+	padding-top: 5px;
+	color:#bcbcbc;
+	font-size: 16px;
+}
+
+.story-description {
+	padding-top: 10px;
+	color:#bcbcbc;
+	font-size: 16px;
 }

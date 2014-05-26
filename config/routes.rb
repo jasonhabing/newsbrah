@@ -16,6 +16,7 @@ NewsApp::Application.routes.draw do
   match '/news' => 'sources#news'
   match '/jade' => 'sources#jade'
   match '/montana' => 'sources#montana'
+  match '/paper' => 'sources#paper'
 
 
   # The priority is based upon order of creation:

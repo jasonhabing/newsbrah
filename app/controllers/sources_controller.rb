@@ -18,10 +18,13 @@ class SourcesController < ApplicationController
 
     @bigs = BigStory.find(:all, :order => "score desc", :limit => 10)
 
-      
+  end
+  
+  def paper
+
+    @bigs = BigStory.find(:all, :order => "score desc", :limit => 10)
 
   end
-
 
 
   def jade
