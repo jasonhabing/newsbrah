@@ -7,11 +7,11 @@
 <% big = @bigs[0] %>
 <% feed = FeedItem.where(:id => big.bestfeed).first %>
 <div class="container" style="padding-top: 40px">
-	<div class="col-md-4">
+	<div class="col-md-6">
 	<a href="/"><%= image_tag(feed.imageurl, :width => "100%", :class => "desaturate lead_image") %></a><br><br>
 	</div>
 
-	<div class="col-md-8">
+	<div class="col-md-6">
 	<div class="lead-title"><b><a href="/story/<%= big.id %>"><%= feed.title %></a></b></div>
 	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
