@@ -35,3 +35,13 @@ font-size: 12px;
 display: inline;
 
 }
+
+img.desaturate { -webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+filter: grayscale(100%);
+}
+
+img.desaturate:hover { -webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+filter: grayscale(0%);
+}
