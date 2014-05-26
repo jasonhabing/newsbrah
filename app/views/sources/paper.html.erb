@@ -6,6 +6,9 @@
 <!-- first story -->
 <% big = @bigs[0] %>
 <% feed = FeedItem.where(:id => big.bestfeed).first %>
+<% if feed.nil? %>
+<% feed = big.feed_items.first %>
+<% end %>
 <div class="container" style="padding-top: 40px">
 	<div class="col-md-6">
 	<a href="/"><%= image_tag(feed.imageurl, :width => "100%", :class => "desaturate lead_image") %></a><br><br>
