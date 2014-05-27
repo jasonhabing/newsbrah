@@ -24,17 +24,17 @@
 <!-- Stories 2 - 10 -->
 <div class="clearfix"></div>
 <% i = 0 %>
-<% big = @bigs[1..6].each do |big| %>
+<% big = @bigs[1..8].each do |big| %>
 <% feed = FeedItem.where(:id => big.bestfeed).first %>
 <% if feed.nil? %>
 <% feed = big.feed_items.first %>
 <% end %>
-<div class="visible-xs">
-	<div class="container">
-	<img src="<%= feed.imageurl %>" class="desaturate lead_image" width="100%"/>
-	</div>
-</div>
+
 <div class = "col-md-6" style="padding-top:30px">
+<div class="visible-md">
+	<img src="<%= feed.imageurl %>" class="desaturate lead_image" width="100%"/>
+	
+</div>
 	<div class="story-title">
 	<b><a href="/story/<%= big.id %>"><%= feed.title %></a></b>
 	</div>
@@ -46,31 +46,8 @@
 	</div>
 </div>
 <% i = i + 1 %>
-<% if i == (2 or 4) %>
+<% if i == (2 or 4 or 6 or 8) %>
 <div class="clearfix"></div>
 <% end %>
-<% end %>
-<div class="clearfix"></div>
-<% big = @bigs[7..9].each do |big| %>
-<% feed = FeedItem.where(:id => big.bestfeed).first %>
-<% if feed.nil? %>
-<% feed = big.feed_items.first %>
-<% end %>
-<div class="visible-xs">
-	<div class="container">
-	<img src="<%= feed.imageurl %>" class="desaturate lead_image" width="100%"/>
-	</div>
-</div>
-<div class = "col-md-4" style="padding-top:30px">
-	<div class="story-title">
-	<b><a href="/story/<%= big.id %>"><%= feed.title %></a></b>
-	</div>
-	<div class="story-mentions">
-	Mentioned in <%= big.feed_items.count %> news outlets
-	</div>
-	<div class="story-description">
-	<%= feed.desc %>
-	</div>
-</div>
 <% end %>
 
