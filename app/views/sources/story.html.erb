@@ -2,8 +2,9 @@
 <div class="container" style="padding-top: 20px">
 <%= render 'header' %>
 </div>
-<div class="col-md-4">
 
+<!-- show images in left sidebar -->
+<div class="col-md-4">
 <% @bigstory.feed_items.each do |feed| %>
 <% unless feed.imageurl.nil? %>
 <div class="col-md-6">
