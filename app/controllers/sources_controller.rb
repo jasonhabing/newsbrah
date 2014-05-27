@@ -1,5 +1,13 @@
 class SourcesController < ApplicationController
+  before_filter :paper, :authenticate 
 
+  def authenticate
+  if request.subdomain == 'stage1'
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "nova"
+  end
+  end
+  end
   # GET /sources
   # GET /sources.json
   def index
@@ -23,7 +31,6 @@ class SourcesController < ApplicationController
   def paper
     @subdomain = request.subdomain
     @bigs = BigStory.find(:all, :order => "score desc", :limit => 10)
-
   end
 
 
