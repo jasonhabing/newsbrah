@@ -1,7 +1,3 @@
-
-fdljsafdl
-
-
 <!-- header -->
 <div class="container" style="padding-top: 20px">
 <%= render 'header' %>
@@ -27,31 +23,32 @@ fdljsafdl
 
 <!-- Stories 2 - 10 -->
 <div class="clearfix"></div>
-<% i = 0 %>
+<% i = 1 %>
 <% big = @bigs[1..8].each do |big| %>
 <% feed = FeedItem.where(:id => big.bestfeed).first %>
 <% if feed.nil? %>
 <% feed = big.feed_items.first %>
 <% end %>
 
+
+
 <div class = "col-md-6" style="padding-top:30px">
-<div class="visible-md">
-	<img src="<%= feed.imageurl %>" class="desaturate lead_image" width="100%" height="250px"/>
-	
-</div>
 	<div class="story-title">
 	<b><a href="/story/<%= big.id %>"><%= feed.title %></a></b>
 	</div>
 	<div class="story-mentions">
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
+	
+
 	<div class="story-description">
 	<%= feed.desc %>
 	</div>
+	
 </div>
-<% i = i + 1 %>
 <% if i == (2 or 4 or 6 or 8) %>
 <div class="clearfix"></div>
 <% end %>
+<% i = i + 1 %>
 <% end %>
 
