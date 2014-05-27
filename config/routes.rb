@@ -2,6 +2,7 @@ NewsApp::Application.routes.draw do
   get "feed_item/calculate"
 
   resources :sources
+  root :to => 'sources#paper'
   match '/feeds' => 'sources#feed'
   match '/sourcereport' => 'sources#sourcereport'
   match '/bignews' => 'sources#news'
