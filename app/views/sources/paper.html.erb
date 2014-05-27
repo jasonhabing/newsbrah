@@ -11,7 +11,7 @@
 <% end %>
 <div class="container" style="padding-top: 20px">
 	<div class="col-md-6">
-	<a href="/"><%= image_tag(feed.imageurl, :width => "100%", :height => "250px", :class => "desaturate lead_image") %></a><br><br>
+	<a href="/"><%= image_tag(feed.imageurl, :width => "100%", :height => "250px", :class => "lead_image") %></a><br><br>
 	</div>
 
 	<div class="col-md-6">
@@ -50,3 +50,6 @@
 <% i = i + 1 %>
 <% end %>
 
+<div class="container" style="padding-top: 20px">
+<%= render 'footer' %>
+</div>
