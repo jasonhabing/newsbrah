@@ -39,14 +39,12 @@
 	<div class="story-mentions">
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
-	
-
 	<div class="story-description">
 	<%= feed.desc %>
 	</div>
 	
 </div>
-<% if i == (2 or 4 or 6 or 8) %>
+<% if [2, 4, 6, 8].include? i %>
 <div class="clearfix"></div>
 <% end %>
 <% i = i + 1 %>
