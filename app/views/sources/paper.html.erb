@@ -11,7 +11,7 @@
 <% end %>
 <div class="container" style="padding-top: 20px">
 	<div class="col-md-6">
-	<a href="/"><%= image_tag(feed.imageurl, :width => "100%", :height => "250px", :class => "lead_image") %></a><br><br>
+	<a href="/story/<%= big.id %>"><%= image_tag(feed.imageurl, :width => "100%", :class => "lead_image") %></a><br><br>
 	</div>
 
 	<div class="col-md-6">
@@ -30,9 +30,10 @@
 <% feed = big.feed_items.first %>
 <% end %>
 
-
-
 <div class = "col-md-6" style="padding-top:30px">
+<div class="visible-xs">
+<a href="/story/<%= big.id %>"><%= image_tag(feed.imageurl, :width => "100%") %></a><br><br>
+</div>
 	<div class="story-title">
 	<b><a href="/story/<%= big.id %>"><%= feed.title %></a></b>
 	</div>
@@ -42,7 +43,9 @@
 	<div class="story-description">
 	<%= feed.desc %>
 	</div>
-	
+<div class="visible-xs">
+<br><br>
+</div>
 </div>
 <% if [2, 4, 6, 8].include? i %>
 <div class="clearfix"></div>
