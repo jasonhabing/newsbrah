@@ -9,7 +9,6 @@ group :development, :test do
   gem 'rails', '3.2.12'
   gem 'feedzirra'
   gem 'descriptive-statistics'
-
 end
 
 group :production do

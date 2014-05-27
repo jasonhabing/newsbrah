@@ -78,7 +78,7 @@ task :find_best_feeditems => :environment do
           puts "feed id is #{feedid}"
           feed = FeedItem.where(:id => feedid).first
           #this should eventually be replaced by a blacklist of sites we don't want to use images or desc's from
-          unless feed.desc.nil? or feed.imageurl.nil? or feed.imageurl.include? 'ndtv' or feed.imageurl.include? 'detroitnews' or feed.imageurl.include? 'startribune'
+          unless feed.desc.nil? or feed.imageurl.nil? or feed.imageurl.include? 'ndtv' or feed.imageurl.include? 'detroitnews' or feed.imageurl.include? 'startribune' or feed.imageurl.include? 'sltrib'
             @bestfeedid = feedid
             i = i + 1
           end
