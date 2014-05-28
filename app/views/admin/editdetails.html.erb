@@ -1,0 +1,33 @@
+<br><br>
+<div class="container">
+	<div class="col-md-4">
+<% feed = FeedItem.where(:id => @story.bestfeed).first %>
+<% if feed.nil? %>
+<% feed = @story.feed_items.first %>
+<% end %>
+<% unless feed.nil? %>
+ <h2> Story Details </h2>
+<b>Title:</b> <%= best_in_place feed, :title %><br>
+<b>Mentions:</b> <%= @story.feed_items.count %><br>
+<b>Description</b> <%= best_in_place feed, :desc %><br>
+<b>Image</b> <%= best_in_place feed, :imageurl %><br>
+<img src="<%= feed.imageurl %>" width="200px"/><br>
+<b>Score</b> <%= best_in_place @story, :score %><br>
+<b>ID</b> <%= best_in_place @story, :id %><br>
+<br>
+<% end %>
+</div>
+<div class="col-md-6">
+ <h2> Feed Items to Choose From: </h2><br><br>
+<% @story.feed_items.each do |feed| %>
+
+Title: <%= feed.title %><br>
+Image: <%= feed.imageurl %><br>
+<img src ="<%= feed.imageurl %>" width="200px"/><br>
+Desc: <%= feed.desc %><br>
+
+<br><br>
+<% end %>
+
+	</div>
+</div>

@@ -24,6 +24,7 @@ NewsApp::Application.routes.draw do
   match 'editfeed' => 'sources#editfeed'
   match 'admin' => 'admin#edit'
   match 'admin/:id' => 'admin#editfeed'
+  match 'admin/details/:id' => 'admin#editdetails'
 
 
   # The priority is based upon order of creation:
