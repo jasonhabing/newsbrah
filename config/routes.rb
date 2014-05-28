@@ -2,6 +2,9 @@ NewsApp::Application.routes.draw do
   get "feed_item/calculate"
 
   resources :sources
+  resources :big_stories
+  resources :feed_items
+
   root :to => 'sources#paper'
   match '/feeds' => 'sources#feed'
   match '/sourcereport' => 'sources#sourcereport'
@@ -18,6 +21,9 @@ NewsApp::Application.routes.draw do
   match '/jade' => 'sources#jade'
   match '/montana' => 'sources#montana'
   match '/paper' => 'sources#paper'
+  match 'editfeed' => 'sources#editfeed'
+  match 'admin' => 'admin#edit'
+  match 'admin/:id' => 'admin#editfeed'
 
 
   # The priority is based upon order of creation:

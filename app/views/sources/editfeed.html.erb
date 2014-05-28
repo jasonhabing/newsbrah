@@ -1,0 +1,9 @@
+<% @bigstories.each do |story| %>
+
+<%= story.title %><br>
+<%= story.feed_items.count %><br>
+<a href="/story/edit/<%= story.id %>">Edit this story</a>
+
+<br><br>
+
+<% end %>

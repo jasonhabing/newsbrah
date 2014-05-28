@@ -8,6 +8,14 @@ class SourcesController < ApplicationController
   end
   end
   end
+
+  def editfeed
+
+    @bigstories = BigStory.find( :all, :order => "score DESC" , :limit => 100)
+
+  end
+
+
   # GET /sources
   # GET /sources.json
   def index
@@ -21,6 +29,7 @@ class SourcesController < ApplicationController
       format.json { render json: @sources }
     end
   end
+
 
   def montana
 

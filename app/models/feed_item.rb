@@ -1,6 +1,6 @@
 class FeedItem < ActiveRecord::Base
 
-	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource
+	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource, :desc, :imageurl, :big_story_id
   belongs_to :big_story
   has_many :images
 

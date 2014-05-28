@@ -1,0 +1,35 @@
+<div class="container">
+	<br><br>
+<div class="col-md-4">
+<h2><%= @story.title %> Feed Items</h2>
+<table>
+<tr>
+	<td><b>Story Title</b></td>
+	<td><b>Big Story ID</b> </td>
+</tr>
+<% @story.feed_items.each do |feed| %>
+<tr>
+<td><%= feed.title %></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><%= best_in_place feed, :big_story_id %></td>
+</tr>
+<% end %>
+</table>
+</div>
+
+
+<div class="col-md-4">
+Big Story IDs reference table<br><br>
+<table>
+	<tr>
+	<td><b>Big Story</b></td>
+	<td><b>Big Story ID</b> </td>
+</tr>
+<% @bigs.each do |big| %>
+<tr>
+<td><%= big.title %></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><b><%= big.id %></b></td>
+</tr>
+<% end %>
+</table>
+
+</div>

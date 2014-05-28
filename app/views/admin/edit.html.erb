@@ -1,0 +1,25 @@
+<div class="container">
+<h2>Front Page - Admin</h2>
+	<br><br>
+<% @bigs.each do |big| %>
+
+<% feed = FeedItem.where(:id => big.bestfeed).first %>
+<% if feed.nil? %>
+<% feed = big.feed_items.first %>
+<% end %>
+<% unless feed.nil? %>
+<b>Title:</b> <%= best_in_place feed, :title %><br>
+<b>Mentions:</b> <%= big.feed_items.count %> <a href="/admin/<%= big.id %>" style="color:blue">manage linked stories </a> <br>
+<b>Description</b> <%= best_in_place feed, :desc %><br>
+<b>Image</b> <%= best_in_place feed, :imageurl %><br>
+<img src="<%= feed.imageurl %>" width="200px"/><br>
+<b>Score</b> <%= best_in_place big, :score %><br>
+<b>ID</b> <%= best_in_place big, :id %><br>
+<br>
+
+
+<% end %>
+
+
+<% end %>
+</div>

@@ -9,6 +9,7 @@ group :development, :test do
   gem 'rails', '3.2.12'
   gem 'feedzirra'
   gem 'descriptive-statistics'
+  gem 'best_in_place'
 end
 
 group :production do
@@ -17,6 +18,8 @@ group :production do
   gem 'rails', '3.2.12'
   gem 'feedzirra'
   gem 'descriptive-statistics'
+  gem 'best_in_place'
+
 
 end
 
