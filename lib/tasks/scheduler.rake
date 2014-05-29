@@ -212,11 +212,6 @@ end
 
 
 
-task :pull_descriptions => :environment do
-
-
-
-end
 
 
 #delete feeditems that don't have a bigstory id that are older than 20 days

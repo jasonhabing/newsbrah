@@ -1,7 +1,7 @@
 
 <br><br>
 <div class="container">
-	<a href= "/unpublished" style="color:blue">Unpublished</a>
+	<a href= "/unpublished" style="color:blue">View Unpublished</a>
 </div>
 
 <h2>Published:&nbsp;&nbsp;&nbsp;<%= best_in_place @story, :published %></h2>
@@ -20,6 +20,7 @@
 <br>
 </div>
 <div class="col-md-6">
+	<a href="/fetch/<%= @story.id %>" style="color:blue">fetch images and descriptions</a>
  <h2> Feed Items In Story: </h2><br><br>
 <% @story.feed_items.each do |feed| %>
 
