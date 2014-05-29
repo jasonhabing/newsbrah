@@ -5,7 +5,7 @@ task :update1 => :environment do
   Rake::Task[:update_feed].invoke
   Rake::Task[:update_bignews].invoke
   Rake::Task[:update_scores].invoke
-  Rake::Task[:pull_images].invoke
+  #Rake::Task[:pull_images].invoke
   #Rake::Task[:find_best_feeditems].invoke
 
 end
@@ -496,7 +496,7 @@ end
       puts "made bestid"
       besttitle = FeedItem.where("id" => bestid2).first.title
       puts "best title is #{besttitle}" 
-      story.title = besttitle
+      #story.title = besttitle
       story.save
       puts "story #{story.id} title saved as #{story.title}"
     end
