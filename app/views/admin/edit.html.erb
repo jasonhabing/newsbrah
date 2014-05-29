@@ -1,27 +1,20 @@
 <div class="container">
-<h2>Front Page - Admin</h2>
+<h2>Front Page</h2>
 <p>click anything to edit. warning: will edit immediately</p>
 	<br><br>
 <% @bigs.each do |big| %>
 
-<% feed = FeedItem.where(:id => big.bestfeed).first %>
-<% if feed.nil? %>
-<% feed = big.feed_items.first %>
-<% end %>
-<% unless feed.nil? %>
  <a href="/admin/<%= big.id %>" style="color:blue">manage linked stories </a> &nbsp;&nbsp;|&nbsp;&nbsp;  <a href="/admin/details/<%= big.id %>" style="color:blue">edit desc/image </a><br>
-<b>Title:</b> <%= best_in_place feed, :title %><br>
+<b>Title:</b> <%= best_in_place big, :title %><br>
 <b>Mentions:</b> <%= big.feed_items.count %><br>
-<b>Description</b> <%= best_in_place feed, :desc %><br>
-<b>Image</b> <%= best_in_place feed, :imageurl %><br>
-<img src="<%= feed.imageurl %>" width="200px"/><br>
+<b>Description</b> <%= best_in_place big, :description %><br>
+<b>Image</b> <%= best_in_place big, :imageurl %><br>
+<img src="<%= big.imageurl %>" width="200px"/><br>
 <b>Score</b> <%= best_in_place big, :score %><br>
 <b>ID</b> <%= best_in_place big, :id %><br>
+<b>Published</b> <%= best_in_place big, :published %><br>
+
 <br>
-
-
-<% end %>
-
 
 <% end %>
 </div>

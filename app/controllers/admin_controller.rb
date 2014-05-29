@@ -9,15 +9,21 @@ class AdminController < ApplicationController
   end
   end
 
+  def unpublished
+
+        @bigs = BigStory.where(published: 0).order(:created_at).reverse
+
+  end
+
 
 def edit
-    @bigs = BigStory.find(:all, :order => "score desc", :limit => 20)    
+    @bigs = BigStory.where(published: 1).order(:score).limit(10).reverse
 end
 
 def editfeed
 
 	@story = BigStory.find(params[:id])
-    @bigs = BigStory.find(:all, :order => "score desc", :limit => 20)    
+  @bigs = BigStory.find(:all, :order => "score desc", :limit => 20)    
 
 end
 

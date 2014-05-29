@@ -25,6 +25,7 @@ NewsApp::Application.routes.draw do
   match 'admin' => 'admin#edit'
   match 'admin/:id' => 'admin#editfeed'
   match 'admin/details/:id' => 'admin#editdetails'
+  match 'unpublished' => 'admin#unpublished'
 
 
   # The priority is based upon order of creation:

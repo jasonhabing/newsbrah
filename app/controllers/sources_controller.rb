@@ -39,7 +39,8 @@ class SourcesController < ApplicationController
   
   def paper
     @subdomain = request.subdomain
-    @bigs = BigStory.find(:all, :order => "score desc", :limit => 10)
+    @bigs = BigStory.where(published: 1).order(:score).limit(10).reverse
+
   end
 
 

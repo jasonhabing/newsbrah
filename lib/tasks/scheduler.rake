@@ -6,7 +6,7 @@ task :update1 => :environment do
   Rake::Task[:update_bignews].invoke
   Rake::Task[:update_scores].invoke
   Rake::Task[:pull_images].invoke
-  Rake::Task[:find_best_feeditems].invoke
+  #Rake::Task[:find_best_feeditems].invoke
 
 end
 
@@ -88,10 +88,9 @@ task :find_best_feeditems => :environment do
       
     if @bestfeedid == nil
       @bestfeedid = @toptitle.first.first.first
-    else
+    end
       story.bestfeed = @bestfeedid
       story.save
-    end
     puts "best feed id is #{@bestfeedid}"
     end
   end
@@ -377,10 +376,10 @@ latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 2000).r
     puts "$$$$$$$ Create a new bigstory $$$$$$"
     newbig = BigStory.new
     newbig.score = 0.0
+    newbig.published = 0
     newbig.save
     newbig = BigStory.last
     puts "$$$$$$ Created new bigstory #{newbig} $$$$$$" 
-
     storydates = []
 
   #put each feed item in the new big story

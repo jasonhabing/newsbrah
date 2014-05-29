@@ -1,0 +1,12 @@
+<div class="container">
+<% @bigs.each do |big| %>
+
+
+<b>Title:</b> <%= best_in_place big, :title %><br>
+<b>Mentions:</b> <%= big.feed_items.count %><br>
+<b>Published</b> <%= best_in_place big, :published %><br>
+<a href="/admin/details/<%= big.id %>" style="color:blue">Manage </a><br>
+<br>
+
+<% end %>
+</div>
