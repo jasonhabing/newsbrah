@@ -135,7 +135,7 @@ task :update_scores => :environment do
   @bigs.each do |big|
     count = big.feed_items.count
     age = (Time.now - big.created_at) / 3600
-    score = (count - 1) / (age + 2) ** 1.1
+    score = (count - 1) / (age + 2) ** 1.3
 
     score.to_f
     big.score = score
