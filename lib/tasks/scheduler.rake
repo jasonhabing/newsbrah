@@ -496,22 +496,80 @@ end
       puts "made bestid"
       besttitle = FeedItem.where("id" => bestid2).first.title
       puts "best title is #{besttitle}" 
-      #story.title = besttitle
+      if story.title == nil
+      story.title = besttitle
+      end
       story.save
       puts "story #{story.id} title saved as #{story.title}"
     end
     end
     end
-
-
-
-
-
-
-
-
-
     end
+
+    #code to fetch images and descriptions
+    require "open-uri"
+    require "net/http"
+    def url_exist?(url_string)
+    url = URI.parse(url_string)
+    req = Net::HTTP.new(url.host, url.port)
+    req.use_ssl = (url.scheme == 'https')
+    path = url.path if url.path.present?
+    res = req.request_head(path || '/')
+    if res.kind_of?(Net::HTTPRedirection)
+      url_exist?(res['location']) # Go after any redirect and make sure you can access the redirected URL 
+    else
+      ! %W(4 5).include?(res.code[0]) # Not from 4xx or 5xx families
+    end
+  rescue Errno::ENOENT
+    false #false if can't find the server
+  rescue SocketError => se
+    false
+  rescue Errno::ECONNREFUSED
+    false
+  rescue Exception
+    puts "bad url"  
+  end
+
+    puts "BigStory #{story.id}, pulling feed items"
+      story.feed_items.each do |feed|
+        puts "pulling FeedItem #{feed.id}"
+        url = feed.url.strip  
+        puts "url is #{url}"
+        unless url.include? '_' or url.include? 'hartfordcourant' or url.include? '?' or url.include? 'nytimes' or url.include? 'ChicagoTribune' or url.include? '~'
+        if url_exist?(url)
+          doc = Nokogiri::HTML(open(url))
+          puts "doc made for feed item #{feed.id}"
+
+          unless doc == nil or doc.at_css('meta[property="og:image"]') == nil
+            p = doc.at_css('meta[property="og:image"]')['content']
+            if p.length < 200
+            feed.imageurl = p
+            end
+
+            unless doc == nil or doc.at_css('meta[property="og:description"]') == nil
+              d = doc.at_css('meta[property="og:description"]')['content']
+              feed.desc = d
+            end
+            
+            if story.description == nil
+              story.description = d
+              story.save
+            end
+            if story.imageurl == nil
+              story.imageurl = p
+              story.save
+            end
+            
+            feed.save
+            puts "picture url stored for feed item #{feed.id}"
+          end
+        
+       
+        end
+        end
+     
+  end
+
 end
 
 
