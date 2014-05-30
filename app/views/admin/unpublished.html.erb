@@ -1,15 +1,26 @@
-<div class="container">
+<div class="container"style="padding-left:10px;">
 <% @bigs.each do |big| %>
 
 
-<b>Title:</b> <%= best_in_place big, :title %><br>
-<b>Description:</b> <%= best_in_place big, :description, type: :textarea %><br>
-<b>Image:</b> <%= best_in_place big, :imageurl %><br>
+<h4><%= best_in_place big, :title %></h4>
+<%= best_in_place big, :description, type: :textarea %><br><br>
+
 <img src="<%= big.imageurl %>" width="200px"/><br>
-<b>Mentions:</b> <%= big.feed_items.count %><br>
-<b>Published</b> <%= best_in_place big, :published %><br>
-<a href="/admin/details/<%= big.id %>" style="color:blue">Manage </a><br>
-<br>
+
+
+<h4>Published <span style="color:red;font-size:24px;"><%= best_in_place big, :published %></span></h4>
+<a href="/admin/details/<%= big.id %>" style="color:blue"> </a>
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= big.id %>"><%= big.feed_items.count %> sources </a><br><br>
+
+<div id="collapse<%= big.id %>" class="panel-collapse collapse">
+
+<% big.feed_items.all.each do |story| %>
+<%= story.title %><br>
+<% end %>
+<br><br>
+</div>
+<a href="admin/details/<%= big.id %>" style="color:blue">Make edits</a><br>
+__________________
 
 <% end %>
 </div>

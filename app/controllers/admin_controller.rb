@@ -88,7 +88,26 @@ end
 def editdetails
 
 	@story = BigStory.find(params[:id])
-    @bigs = BigStory.find(:all, :order => "score desc", :limit => 20)    
+  @bigs = BigStory.find(:all, :order => "id desc", :limit => 30)    
+  
+  id = params[:id]
+
+  @bigstory = BigStory.where(:id => id).first
+
+  @images = []
+  @descriptions = []
+
+  @bigstory.feed_items.each do |feed|
+    unless feed.desc == nil
+      @descriptions << feed.desc
+    end
+
+    unless feed.imageurl == nil
+      @images << feed.imageurl
+    end
+
+  end
+
 
 end
 

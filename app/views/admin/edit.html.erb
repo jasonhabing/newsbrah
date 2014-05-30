@@ -7,7 +7,7 @@
  <a href="/admin/<%= big.id %>" style="color:blue">manage linked stories </a> &nbsp;&nbsp;|&nbsp;&nbsp;  <a href="/admin/details/<%= big.id %>" style="color:blue">edit desc/image </a><br>
 <b>Title:</b> <%= best_in_place big, :title %><br>
 <b>Mentions:</b> <%= big.feed_items.count %><br>
-<b>Description</b> <%= best_in_place big, :description %><br>
+<b>Description</b> <%= best_in_place big, :description, type: :textarea %><br>
 <b>Image</b> <%= best_in_place big, :imageurl %><br>
 <img src="<%= big.imageurl %>" width="200px"/><br>
 <b>Created_at</b> <%= big.created_at %><br>

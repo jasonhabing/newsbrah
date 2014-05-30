@@ -1,36 +1,77 @@
+<br><br><br><br><br><br>
 
-<br><br>
-<div class="container">
-	<a href= "/unpublished" style="color:blue">View Unpublished</a>
-</div>
+<center>
+	<a href="#story" style="color:blue">Edit/Publish Story</a><br><br>
+	<a href="#images" style="color:blue">Find New Image/Desc</a><br><br>
+<a href="#change" style="color:blue">Change or remove feed items</a></center>
+<br><br><br><br><br>
+<br><br><br>
+<br><br><br>
+<a id="story"></a>
+<h2>Edit Story Data</h2>
 
-<h2>Published:&nbsp;&nbsp;&nbsp;<%= best_in_place @story, :published %></h2>
-<div class="container">
-	<div class="col-md-4">
-
-
- <h2>Big Story:</h2>
-<b>Title:</b> <%= best_in_place @story, :title %><br>
-<b>Mentions:</b> <%= @story.feed_items.count %><br>
-<b>Description</b> <%= best_in_place @story, :description %><br>
-<b>Image</b> <%= best_in_place @story, :imageurl %><br>
-<img src="<%= @story.imageurl %>" width="200px"/><br>
-<b>Score</b> <%= best_in_place @story, :score %><br>
-<b>ID</b> <%= best_in_place @story, :id %><br>
+<% id = params[:id] %>
+<% big = BigStory.where(:id => id).first %>
+<%= best_in_place big, :id %>
+<h4><%= best_in_place big, :title %></h4>
 <br>
-</div>
-<div class="col-md-6">
-	<a href="/fetch/<%= @story.id %>" style="color:blue">fetch images and descriptions</a>
- <h2> Feed Items In Story: </h2><br><br>
-<% @story.feed_items.each do |feed| %>
+<%= best_in_place big, :description, type: :textarea %><br><br>
+<%= best_in_place big, :imageurl, type: :textarea %><br>
+<img src="<%= big.imageurl %>" width="200px"/><br>
 
-Title: <%= feed.title %><br>
-Image: <%= feed.imageurl %><br>
-<img src ="<%= feed.imageurl %>" width="200px"/><br>
-Desc: <%= feed.desc %><br>
+
+<h4>Published <span style="color:red;font-size:24px;"><%= best_in_place big, :published %></span></h4>
+<a href="/admin/details/<%= big.id %>" style="color:blue"> </a>
+<br><br>
+<a id="images"></a>
+<h2>Find images and descriptions</h2>
+Just copy and paste an image URL and description into the Story Details above.<br><br>
+Nothing below? <a href="/fetch/<%= big.id %>" style="color:blue">Fetch images/descriptions</a>
+<h4>Images to use:</h4>
+<table>
+<% @images.each do |img| %>
+<tr>
+<td>
+<img src="<%= big.imageurl %>" width="100px"/>
+</td>
+<td>
+<span style="font-size:10px;"><%= img %></span>	
+</td>
+</tr>
+<% end %>
+</table>
+<h4>Descriptions to use:</h4>
+ 
+<% @descriptions.each do |desc| %>
+<%= desc %><br><br>
+<% end %>
+<a id="change"></a>
+
+<h2>Change or remove feed items</h2>
+<a href="/big_stories/new" target="blank">Create new Big Story</a><br> 
+
+
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse">Look at current Big Stories</a><br><br>
+
+<div id="collapse" class="panel-collapse collapse">
+
+<% @bigs.each do |big| %><br>
+<b><%= big.id %></b> - <%= big.title %>
+<% end %>
+<br><br>
+</div>
+
+
+
 
 <br><br>
+
+<% big.feed_items.each do |feed| %>
+<%= feed.title %><br>
+<div style="width:100px;height:15px;margin-top:5px; margin-bottom:10px">
+<%= best_in_place feed, :big_story_id %>
+</div><br><br>
 <% end %>
 
-	</div>
-</div>
+
+
