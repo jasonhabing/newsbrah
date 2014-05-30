@@ -26,10 +26,11 @@ Big Story IDs reference table<br><br>
 </tr>
 <% @bigs.each do |big| %>
 <tr>
-<td><%= big.title %></td><td></td><td><b><%= big.id %></b></td>
+<td><%= best_in_place big, :title %></td><td></td><td><b><%= big.id %></b></td>
 </tr>
 <% end %>
 </table>
+<a href="/big_stories/new" style="color:blue" target="blank">Create new big story</a>
 </div>
 
 

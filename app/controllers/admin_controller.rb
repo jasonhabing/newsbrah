@@ -81,7 +81,7 @@ end
 def editfeed
 
 	@story = BigStory.find(params[:id])
-  @bigs = BigStory.find(:all, :order => "score desc", :limit => 20)    
+  @bigs = BigStory.find(:all, :order => "id desc", :limit => 40)    
 
 end
 

@@ -1,4 +1,14 @@
 class BigStoriesController < ApplicationController
+  before_filter :authenticate 
+
+  def authenticate
+  unless request.subdomain == 'stage1'
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "nova"
+  end
+  end
+  end
+
 
 def index
     @story = BigStory.all
@@ -9,8 +19,17 @@ def index
     end
   end
 
+def new
+    @story = BigStory.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @source }
+    end
+  end
+
 def create
-    @story = BigStory.new(params[:source])
+    @story = BigStory.new(params[:big_story])
 
     respond_to do |format|
       if @story.save
