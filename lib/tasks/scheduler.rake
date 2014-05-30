@@ -131,11 +131,11 @@ end
 
 task :update_scores => :environment do
 
-  @bigs = BigStory.find(:all, :order => "id desc", :limit => 100)
+  @bigs = BigStory.find(:all, :order => "id desc", :limit => 300)
   @bigs.each do |big|
     count = big.feed_items.count
     age = (Time.now - big.created_at) / 3600
-    score = (count - 1) / (age + 2) ** 1.3
+    score = (count - 1) / (age + 2) ** 1.4
 
     score.to_f
     big.score = score
