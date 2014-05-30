@@ -3,6 +3,9 @@
 
 
 <b>Title:</b> <%= best_in_place big, :title %><br>
+<b>Description:</b> <%= best_in_place big, :description, type: :textarea %><br>
+<b>Image:</b> <%= best_in_place big, :imageurl %><br>
+<img src="<%= big.imageurl %>" width="200px"/><br>
 <b>Mentions:</b> <%= big.feed_items.count %><br>
 <b>Published</b> <%= best_in_place big, :published %><br>
 <a href="/admin/details/<%= big.id %>" style="color:blue">Manage </a><br>

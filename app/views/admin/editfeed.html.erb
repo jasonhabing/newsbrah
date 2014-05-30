@@ -1,6 +1,6 @@
 <div class="container">
 	<br><br>
-<div class="col-md-4">
+<div class="col-md-8">
 <h2><%= @story.title %> Feed Items</h2>
 <table>
 <tr>
@@ -17,7 +17,6 @@
 </table>
 </div>
 
-
 <div class="col-md-4">
 Big Story IDs reference table<br><br>
 <table>
@@ -27,9 +26,10 @@ Big Story IDs reference table<br><br>
 </tr>
 <% @bigs.each do |big| %>
 <tr>
-<td><%= big.title %></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><b><%= big.id %></b></td>
+<td><%= big.title %></td><td></td><td><b><%= big.id %></b></td>
 </tr>
 <% end %>
 </table>
-
 </div>
+
+
