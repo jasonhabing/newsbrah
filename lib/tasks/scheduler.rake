@@ -138,7 +138,7 @@ task :update_scores => :environment do
     puts "scoring big story #{big.id}"
     count = big.feed_items.count
     age = (Time.now - big.created_at) / 3600
-    score = (count - 1) / (age + 2) ** 1.3
+    score = (count - 1) / (age + 2) ** 1.1
 
     score.to_f
     big.score = score
