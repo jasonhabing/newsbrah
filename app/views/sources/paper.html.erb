@@ -24,10 +24,9 @@
 <!-- Stories 2 - 10 -->
 <div class="clearfix"></div>
 <% i = 1 %>
-<% big = @bigs[1..8].each do |big| %>
+<% big = @bigs[1..12].each do |big| %>
 
-
-<div class = "col-md-6" style="padding-top:30px">
+<div class = "col-md-4" style="padding-top:30px">
 <div class="visible-xs">
 <a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%") %></a><br><br>
 </div>
@@ -38,13 +37,16 @@
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
 	<div class="story-description">
+		<% if [1, 2, 3].include? i %>
+		<div class="hidden-xs hidden-sm"><img src="<%= big.imageurl %>" width="100%" align="left" style="padding-right: 10px; padding-bottom:10px"></div>
+		<% end %>
 	<%= big.description %>
 	</div>
 <div class="visible-xs">
 <br><br>
 </div>
 </div>
-<% if [2, 4, 6, 8].include? i %>
+<% if [3, 6].include? i %>
 <div class="clearfix"></div>
 <% end %>
 <% i = i + 1 %>
