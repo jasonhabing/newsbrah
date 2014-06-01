@@ -67,6 +67,12 @@ color:#bcbcbc;
 	color: black;
 }
 
+.lead-title {
+	font-size: 28px;
+	text-align: justify;
+	color: black;
+}
+
 img.lead_image {
 
 	padding-top: 10px;
@@ -88,6 +94,7 @@ img.lead_image {
 	font-size: 22px;
 	text-align: justify;
 	color: black;
+	line-height: 20px;
 }
 
 .story-mentions {
@@ -99,5 +106,10 @@ img.lead_image {
 .story-description {
 	padding-top: 10px;
 	color:#bcbcbc;
-	font-size: 16px;
+	font-size: 18px;
+}
+
+.linklist {
+
+	line-height: 70px;
 }

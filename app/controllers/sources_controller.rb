@@ -470,7 +470,7 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
 
   def story
 
-    @bigstory = BigStory.find(params[:id])
+    @big = BigStory.find(params[:id])
 
 # inefficient trace code
 #     @storycount = 250  

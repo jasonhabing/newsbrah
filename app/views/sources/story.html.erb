@@ -3,35 +3,39 @@
 <%= render 'header' %>
 </div>
 
-<!-- show images in left sidebar -->
-<div class="col-md-4">
-<% @bigstory.feed_items.each do |feed| %>
-<% unless feed.imageurl.nil? %>
+<% big = @big %>
+<div class="container" style="padding-top: 20px">
+	<div class="col-md-6">
+	<%= image_tag(big.imageurl, :width => "100%", :class => "lead_image") %>
+	
+	<br><br>
+	</div>
+
+	<div class="col-md-6">
+	<div class="lead-title"><b><%= big.title %></b></div>
+	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
+	</div>
+	<div class="lead-description"><%= big.description %></div>
+	
+</div>
+</div>
+	
+<div class="clearfix" style="padding-top:20px">
+<div class="container">
+<% big.feed_items.each do |feed| %>
+<% source = Source.where(:id => feed.source).first %>
 <div class="col-md-6">
-<img src="<%= feed.imageurl %>" width="100%">
+<div class="col-md-4">
+<%= image_tag("comingsoon.jpg", :alt => "cheetah", :height => 70) %>	
+<!-- <img src="<%= source.logo %>" height="70px">
+waiting for source images
+-->
+</div>
+<div class="col-md-8 linklist">
+<a href="<%= feed.url %>"><%= feed.title %></a>
+</div>
 </div>
 <% end %>
-<% end %>
 </div>
-
-<div class="container" style="padding-top:20px">
-<div class="row">
-
-<div class="col-md-8">
-	<p style="font-size:26px;letter-spacing:-1px;color:black;"><b><%= @bigstory.title %></b></p>
-	<p style="font-size: 20px;">Mentioned in <%= @bigstory.feed_items.count %> news sources. </p>
-					<br>
-
-
-					<% unless @bigstory.breakingdate == nil or @bigstory.latestdate == nil %>					
-					<% @bigstory.feed_items.each do |item| %>
-					<div style="padding-bottom:10px;">
-					<a href="<%= item.url %>" style="padding-bottom: 20px"><%= item.title %></a>
-					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.feedsource %></span>	<br>
-					<span style="font-size: 11px; color: gray; padding-top: 20px"><%= item.desc %></span>
-					<br>
-				</div>
-					<% end %>
-					<% end %>
-
+</div>
 </div>

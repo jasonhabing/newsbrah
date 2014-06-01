@@ -37,7 +37,7 @@
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
 	<div class="story-description">
-		<div class="hidden-xs hidden-sm"><img src="<%= big.imageurl %>" width="100%" align="left" style="padding-right: 10px; padding-bottom:10px"></div>
+		<div class="hidden-xs hidden-sm"><a href="/story/<%= big.id %>"><img src="<%= big.imageurl %>" width="100%" align="left" style="padding-right: 10px; padding-bottom:10px"></a></div>
 	<%= big.description %>
 	</div>
 <div class="visible-xs">

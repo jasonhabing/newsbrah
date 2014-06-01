@@ -1,6 +1,6 @@
 class FeedItem < ActiveRecord::Base
 
-	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource, :desc, :imageurl, :big_story_id
+	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource, :desc, :imageurl, :big_story_id, :source
   belongs_to :big_story
   has_many :images
 
@@ -11,11 +11,11 @@ class FeedItem < ActiveRecord::Base
   validates :feedsource, length: { maximum: 250 }
 
 
-  def self.update_from_feed(feed_url)
+  def self.update_from_feed(feed_url, source)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
 
     unless feed.is_a? Fixnum    
-    add_entries(feed.entries)
+    add_entries(feed.entries, source)
     end
 
     rescue Exception
@@ -37,7 +37,7 @@ class FeedItem < ActiveRecord::Base
   private
   
 
-  def self.add_entries(entries)
+  def self.add_entries(entries, source)
     entries.each do |entry|
       
       unless FeedItem.exists?(:guid => entry.id)
@@ -49,7 +49,8 @@ class FeedItem < ActiveRecord::Base
         :published => entry.published, 
         :author => entry.author, 
         :guid => entry.id, 
-        :feedsource => URI.parse(entry.url).host
+        :feedsource => URI.parse(entry.url).host,
+        :source => source
         )
 
       if newfeeditem.published == nil

@@ -19,7 +19,8 @@ puts "Updating sources"
 	@sources.each do |source|
 	  puts "updating #{source.rss}"		
       rss = source.rss
-      FeedItem.update_from_feed(rss)
+      sourceid = source.id
+      FeedItem.update_from_feed(rss, sourceid)
     end
 puts "Sources Updated" 
 puts "....."
@@ -343,7 +344,7 @@ latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 2000).r
       puts "putting final groupings bigger than five together"
       @fg = []
       @finalgroupings.each do |g|
-        if g.count >= 5
+        if g.count >= 8
           @fg << g
         end
       end
