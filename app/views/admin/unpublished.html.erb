@@ -3,6 +3,7 @@
 <div class="container"style="padding-left:10px;">
 <% @bigs.each do |big| %>
 
+<% if big.feed_items.count > 8 %>
 
 <h4><%= best_in_place big, :title %></h4>
 <%= best_in_place big, :description, type: :textarea %><br><br>
@@ -23,6 +24,6 @@
 </div>
 <a href="admin/details/<%= big.id %>" style="color:blue">Make edits</a><br>
 __________________
-
+<% end %>
 <% end %>
 </div>

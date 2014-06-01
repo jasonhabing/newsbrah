@@ -344,7 +344,7 @@ latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 2000).r
       puts "putting final groupings bigger than five together"
       @fg = []
       @finalgroupings.each do |g|
-        if g.count >= 8
+        if g.count >= 5
           @fg << g
         end
       end
