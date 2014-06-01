@@ -24,7 +24,7 @@
 <div class="container">
 <% big.feed_items.each do |feed| %>
 <% source = Source.where(:id => feed.sourceid).first %>
-<div class="col-md-6">
+<div class="col-md-4">
 <div class="col-md-4">
 <%= image_tag("comingsoon.jpg", :alt => "cheetah", :height => 70) %>	
 </div>
