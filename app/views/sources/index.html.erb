@@ -9,19 +9,21 @@
 <table>
   <tr>
     <th style="width: 100px; text-align: left;">Name</th>
-    <th style="width: 300px; text-align: left;">RSS Feed Link</th>
     <th>Logo</th>
-    <th style="width: 300px; text-align: left;">Logo Link</th>
+    <th width="300px" style="padding-left:30px;">Logo Link</th>
     <th>Delete</th>
+    <th width="200px" style="padding-left:30px;">RSS Feed Link</th>
+    
   </tr>
 
 <% @sources.each do |source| %>
   <tr>
     <td width="100px" height="70px"><%= best_in_place source, :name %></td>
-    <td><%= source.rss %></td>
     <td><img src="<%= source.logo %>" width="100px" height="50px"></td>
-    <td><%= best_in_place source, :logo %></td>
+    <td width="300px" style="padding-left:30px;"><%= best_in_place source, :logo %></td>
     <td><%= link_to 'Delete Source', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td width="200px" style="padding-left:30px;"><%= source.rss %></td>
+    
   </tr>
 <% end %>
 </table>
