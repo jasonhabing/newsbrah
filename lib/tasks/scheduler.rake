@@ -512,7 +512,7 @@ end
       besttitle = FeedItem.where("id" => bestid2).first.title
       puts "best title is #{besttitle}" 
       if story.title == nil
-      story.title = besttitle
+      story.title = besttitle.split.map(&:capitalize).join(' ')
       end
       story.save
       puts "story #{story.id} title saved as #{story.title}"
