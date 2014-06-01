@@ -27,7 +27,11 @@
 <% source = Source.where(:id => feed.sourceid).first %>
 <div class="col-md-4">
 <div class="col-md-4">
-<%= image_tag("comingsoon.jpg", :alt => "cheetah", :height => 70) %>	
+<% if source == nil %>
+<img src="/assets/comingsoon.jpg" width="100px" height="50px" >	
+<% else %>
+<img src="<%= source.logo %>" width="100px" height="50px" >	
+<% end %>
 </div>
 <div class="col-md-8 linklist">
 <a href="<%= feed.url %>"><%= feed.title %></a>

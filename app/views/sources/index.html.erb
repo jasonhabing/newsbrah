@@ -8,23 +8,20 @@
 
 <table>
   <tr>
-    <th style="width: 200px; text-align: left;">Name</th>
-    <th style="width: 600px; text-align: left;">RSS Feed Link</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th style="width: 100px; text-align: left;">Name</th>
+    <th style="width: 300px; text-align: left;">RSS Feed Link</th>
+    <th>Logo</th>
+    <th style="width: 300px; text-align: left;">Logo Link</th>
+    <th>Delete</th>
   </tr>
 
 <% @sources.each do |source| %>
   <tr>
-    <td><%= source.name %></td>
+    <td width="100px" height="70px"><%= best_in_place source, :name %></td>
     <td><%= source.rss %></td>
-    <td style="width: 100px">
-   </td>
-    <!-- <td><%= link_to 'Show', source %></td> -->
-    <td>&nbsp;&nbsp;<%= link_to 'Edit', edit_source_path(source) %></td>
-    <td>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
-    <td><%= link_to 'Delete', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><img src="<%= source.logo %>" width="100px" height="50px"></td>
+    <td><%= best_in_place source, :logo %></td>
+    <td><%= link_to 'Delete Source', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
