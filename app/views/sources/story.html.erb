@@ -22,6 +22,7 @@
 	
 <div class="clearfix" style="padding-top:20px">
 <div class="container">
+<% i = 1 %>
 <% big.feed_items.each do |feed| %>
 <% source = Source.where(:id => feed.sourceid).first %>
 <div class="col-md-4">
@@ -32,6 +33,11 @@
 <a href="<%= feed.url %>"><%= feed.title %></a>
 </div>
 </div>
+<% if [3].include? i %>
+<div class="clearfix"></div>
+<% i = 0 %>
+<% end %>
+<% i = i + 1 %>
 <% end %>
 </div>
 </div>
