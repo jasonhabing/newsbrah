@@ -1,6 +1,6 @@
 class FeedItem < ActiveRecord::Base
 
-	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource, :desc, :imageurl, :big_story_id, :source
+	attr_accessible :author, :categories, :content, :published, :summary, :title, :url, :guid, :feedsource, :desc, :imageurl, :big_story_id, :source, :sourceid
   belongs_to :big_story
   has_many :images
 
@@ -18,8 +18,9 @@ class FeedItem < ActiveRecord::Base
     add_entries(feed.entries, source)
     end
 
-    rescue Exception
-    puts "bad feed"
+    #rescue Exception
+    #puts "bad feed"
+
   end
 
 
@@ -50,7 +51,7 @@ class FeedItem < ActiveRecord::Base
         :author => entry.author, 
         :guid => entry.id, 
         :feedsource => URI.parse(entry.url).host,
-        :source => source
+        :sourceid => source
         )
 
       if newfeeditem.published == nil
