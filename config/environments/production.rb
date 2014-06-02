@@ -64,4 +64,7 @@ NewsApp::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  ENV["HEROKU_POSTGRESQL_ORANGE_URL"] = "postgres://ahkdygrpsfeuov:8UggwR-K064AQ2I_2KLuWOYqUa@ec2-23-23-80-55.compute-1.amazonaws.com:5432/daclaaekqlvulo"
+
+
 end
