@@ -11,6 +11,13 @@ class AdminController < ApplicationController
 
   def unpublished
 
+        @storysize = params[:s].to_i
+
+        if @storysize == 0
+        @storysize = 8
+        end
+
+
         @bigs = BigStory.where(published: 0).order(:created_at).reverse
 
   end

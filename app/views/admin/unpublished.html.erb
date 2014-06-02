@@ -3,7 +3,7 @@
 <div class="container"style="padding-left:10px;">
 <% @bigs.each do |big| %>
 
-<% if big.feed_items.count > 8 %>
+<% if big.feed_items.count > @storysize %>
 
 <h4><%= best_in_place big, :title %></h4>
 <%= best_in_place big, :description, type: :textarea %><br><br>
