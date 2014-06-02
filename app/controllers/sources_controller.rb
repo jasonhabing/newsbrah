@@ -2,10 +2,10 @@ class SourcesController < ApplicationController
   before_filter :paper, :authenticate 
 
   def authenticate
-  if request.subdomain == 'stage1'
+  #if request.subdomain == 'stage1'
     authenticate_or_request_with_http_basic do |username, password|
       username == "admin" && password == "nova"
-  end
+  #end
   end
   end
 
