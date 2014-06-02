@@ -18,8 +18,8 @@ class FeedItem < ActiveRecord::Base
     add_entries(feed.entries, source)
     end
 
-    #rescue Exception
-    #puts "bad feed"
+    rescue Exception
+    puts "bad feed"
 
   end
 
