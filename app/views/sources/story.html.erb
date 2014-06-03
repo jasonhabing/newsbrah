@@ -15,7 +15,7 @@
 	<div class="lead-title"><b><%= big.title %></b></div>
 	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
-	<div class="lead-description"><%= big.description %></div>
+	<div class="lead-description"><%= big.description.html_safe %></div>
 	
 </div>
 </div>
