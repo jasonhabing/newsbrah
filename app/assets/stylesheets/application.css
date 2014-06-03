@@ -80,14 +80,15 @@ img.lead_image {
 
 .lead-mentions {
 	padding-top: 5px;
-	color:#bcbcbc;
+	color:#878787;
 	font-size: 16px;
 }
 
 .lead-description {
 	padding-top: 10px;
-	color:#bcbcbc;
-	font-size: 18px;
+	color:#878787;
+	font-size: 16px;
+
 }
 
 .story-title a {
@@ -99,16 +100,24 @@ img.lead_image {
 
 .story-mentions {
 	padding-top: 5px;
-	color:#bcbcbc;
+	color:#878787;
 	font-size: 16px;
 }
 
 .story-description {
 	padding-top: 10px;
-	color:#bcbcbc;
-	font-size: 18px;
+	color:#878787;
+	font-size: 14px;
 }
 
 .linklist {
 
+}
+
+li.icon {
+     background-image:url(assets/cheetah.png);
+     background-repeat:no-repeat;
+     background-position:3px 3px;
+     min-height:16px;
+     padding-left:20px;
 }
