@@ -8,7 +8,7 @@
 <% big = @bigs[0] %>
 <div class="container" style="padding-top: 20px">
 	<div class="col-md-6">
-	<a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%", :class => "lead_image") %></a>
+	<a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%", :height => "300px",:class => "lead_image") %></a>
 	
 	<br><br>
 	</div>
@@ -17,7 +17,7 @@
 	<div class="lead-title"><b><a href="/story/<%= big.id %>"><%= big.title %></a></b></div>
 	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
-	<div class="lead-description"><%= big.description %></div>
+	<div class="lead-description"><%= big.description.html_safe %></div>
 </div>
 
 
@@ -30,15 +30,23 @@
 <div class="visible-xs visible-sm">
 <a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%") %></a><br><br>
 </div>
+<div class="hidden-xs hidden-sm"><a href="/story/<%= big.id %>">
+	<div class="col-md-4">
+			<img src="<%= big.imageurl %>" width="100%" height="100px" align="left" style="padding-bottom:10px"></a></div>
+		</div>
+		<div class="col-md-8">
 	<div class="story-title">
 	<b><a href="/story/<%= big.id %>"><%= big.title %></a></b>
 	</div>
 	<div class="story-mentions">
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
+	</div>
+	<div class="clearfix"></div>
 	<div class="story-description">
-		<div class="hidden-xs hidden-sm"><a href="/story/<%= big.id %>"><img src="<%= big.imageurl %>" width="100%" align="left" style="padding-right: 10px; padding-bottom:10px"></a></div>
-	<%= big.description %>
+	<% unless big.description == nil %>	
+	<%= big.description.html_safe %>
+	<% end %>
 	</div>
 <div class="visible-xs">
 <br><br>
