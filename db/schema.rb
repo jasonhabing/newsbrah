@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140601195132) do
+ActiveRecord::Schema.define(:version => 20140605033808) do
 
   create_table "big_stories", :force => true do |t|
     t.string   "title"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20140601195132) do
     t.text     "description"
     t.text     "imageurl"
     t.text     "imageattr"
+  end
+
+  create_table "bullets", :force => true do |t|
+    t.text     "content"
+    t.integer  "big_story_id"
+    t.integer  "rank"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "feed_items", :force => true do |t|

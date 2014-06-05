@@ -403,6 +403,17 @@ latestfeeds = FeedItem.find(:all, :order => "created_at desc", :limit => 2000).r
     newbig.score = 0.0
     newbig.published = 0
     newbig.save
+
+    i = 1
+    while i < 4
+    bullet = Bullet.new
+    bullet.big_story_id = newbig.id
+    bullet.rank = i
+    bullet.save
+    i = i + 1
+    end
+
+
     newbig = BigStory.last
     puts "$$$$$$ Created new bigstory #{newbig} $$$$$$" 
     storydates = []

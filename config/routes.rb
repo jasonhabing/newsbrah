@@ -1,4 +1,7 @@
 NewsApp::Application.routes.draw do
+  resources :bullets
+
+
   get "feed_item/calculate"
 
   resources :sources

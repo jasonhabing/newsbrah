@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @bullet.content %>
+</p>
+
+<p>
+  <b>Big story:</b>
+  <%= @bullet.big_story_id %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%= @bullet.rank %>
+</p>
+
+
+<%= link_to 'Edit', edit_bullet_path(@bullet) %> |
+<%= link_to 'Back', bullets_path %>

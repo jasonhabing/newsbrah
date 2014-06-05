@@ -1,0 +1,27 @@
+<h1>Listing bullets</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Big story</th>
+    <th>Rank</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bullets.each do |bullet| %>
+  <tr>
+    <td><%= bullet.content %></td>
+    <td><%= bullet.big_story_id %></td>
+    <td><%= bullet.rank %></td>
+    <td><%= link_to 'Show', bullet %></td>
+    <td><%= link_to 'Edit', edit_bullet_path(bullet) %></td>
+    <td><%= link_to 'Destroy', bullet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bullet', new_bullet_path %>

@@ -1,13 +1,8 @@
-<br><br><br><br><br><br>
-
+<br><br>
 <center>
 	<a href="/unpublished" style="color:blue">Back to Unpublished Queue</a><br><br>
-	<a href="#story" style="color:blue">Edit/Publish Story</a><br><br>
-	<a href="#images" style="color:blue">Find New Image/Desc</a><br><br>
-<a href="#change" style="color:blue">Change or remove feed items</a></center>
-<br><br><br><br><br>
-<br><br><br>
-<br><br><br>
+</center>
+
 <a id="story"></a>
 <h2>Edit Story Data</h2>
 
@@ -17,6 +12,9 @@
 <h4><%= best_in_place big, :title, type: :textarea %></h4>
 <br>
 <%= best_in_place big, :description, type: :textarea %><br><br>
+Bullet 1:<br><br>
+Bullet 2:<br><br>
+Bullet 3:<br><br>
 <%= best_in_place big, :imageurl, type: :textarea %><br>
 <img src="<%= big.imageurl %>" width="200px"/><br>
 
@@ -25,9 +23,7 @@
 <a href="/admin/details/<%= big.id %>" style="color:blue"> </a>
 <br><br>
 <a id="images"></a>
-<h2>Find images and descriptions</h2>
-Just copy and paste an image URL and description into the Story Details above.<br><br>
-Nothing below? <a href="/fetch/<%= big.id %>" style="color:blue">Fetch images/descriptions</a>
+<h2>Images/Descriptions</h2>
 <h4>Images to use:</h4>
 <table>
 <% @images.each do |img| %>
@@ -68,7 +64,7 @@ Nothing below? <a href="/fetch/<%= big.id %>" style="color:blue">Fetch images/de
 <br><br>
 
 <% big.feed_items.each do |feed| %>
-<%= feed.title %><br>
+<a href="<%= feed.url %>"><%= feed.title %></a><br>
 <div style="width:100px;height:15px;margin-top:5px; margin-bottom:10px">
 <%= best_in_place feed, :big_story_id %>
 </div><br><br>

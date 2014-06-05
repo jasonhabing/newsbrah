@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  big_story_id: 1
+  rank: 1
+
+two:
+  content: MyText
+  big_story_id: 1
+  rank: 1
