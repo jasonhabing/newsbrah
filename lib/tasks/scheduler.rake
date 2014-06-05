@@ -248,10 +248,12 @@ FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
 
 @bigs.each do |big|
 
-if big.created_at < (Time.now - 2.days) and big.feed_items.count < 8
+if big.created_at < (Time.now - 1.days) and big.feed_items.count < 8
 
 big.published = 3
 big.save
+
+puts "story #{big.id} changed to published = 3"
 
 end
 
