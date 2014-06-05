@@ -22,6 +22,13 @@ class AdminController < ApplicationController
 
   end
 
+  def bulletfix
+
+
+    @bigs = BigStory.where(published: 1).order("score DESC").limit(100)
+
+  end
+
   def imgfetch
 
     require "open-uri"

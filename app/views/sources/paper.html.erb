@@ -16,7 +16,21 @@
 	<div class="lead-title"><b><a href="/story/<%= big.id %>"><%= big.title %></a></b></div>
 	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
-	<div class="lead-description"><%= big.description.html_safe %></div>
+	<div class="lead-description">
+		<table class="table">
+		 <% bullets = Bullet.where(:big_story_id => big.id) %>
+		 <% bullets.each do |bullet| %>
+		 <% unless bullet.content == nil %>
+		 	<tr>
+		 	<td>
+		 		<%= bullet.content %>
+		 	</td>
+		 	</tr>
+		 	<% end %>
+		 	<% end %>
+		</table>
+
+	</div>
 </div>
 
 
@@ -43,9 +57,21 @@
 	</div>
 	<div class="clearfix"></div>
 	<div class="story-description">
-	<% unless big.description == nil %>	
-	<%= big.description.html_safe %>
-	<% end %>
+		<% unless big.description == nil %>	
+	
+		<table class="table">
+		 <% bullets = Bullet.where(:big_story_id => big.id) %>
+		 <% bullets.each do |bullet| %>
+		 <% unless bullet.content == nil %>
+		 	<tr>
+		 	<td>
+		 		<%= bullet.content %>
+		 	</td>
+		 	</tr>
+		 	<% end %>
+		 	<% end %>
+		</table>
+		<% end %>
 	</div>
 <div class="visible-xs">
 <br><br>
