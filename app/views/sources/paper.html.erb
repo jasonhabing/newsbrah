@@ -9,16 +9,15 @@
 <div class="container" style="padding-top: 20px">
 	<div class="col-md-6">
 	<a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%", :class => "lead_image") %></a>
-	<div class="citelead"><center>
+	<div class="cite"><center>
 	<% url = nil %>
-		<a href="<%= big.imageurl %>">
 			<% unless big.imageurl == nil %>
+			
 			<% url = "http://#{big.imageurl}" if URI.parse(big.imageurl).scheme.nil? %>
   <% host = URI.parse(big.imageurl).host.downcase %>
   <% url = host.start_with?('www.') ? host[4..-1] : host %>
   <% end %>
   <%= truncate(url, :length => 28) %>
-</a>
 </center>
 </div>
 	<br><br>
@@ -56,14 +55,13 @@
 <a href="/story/<%= big.id %>"><%= image_tag(big.imageurl, :width => "100%") %></a>
 <div class="cite"><center>
 	<% url = nil %>
-		<a href="<%= big.imageurl %>">
 			<% unless big.imageurl == nil %>
+			
 			<% url = "http://#{big.imageurl}" if URI.parse(big.imageurl).scheme.nil? %>
   <% host = URI.parse(big.imageurl).host.downcase %>
   <% url = host.start_with?('www.') ? host[4..-1] : host %>
   <% end %>
   <%= truncate(url, :length => 28) %>
-</a>
 </center>
 </div>
 
@@ -76,14 +74,13 @@
 
 <div class="cite"><center>
 	<% url = nil %>
-		<a href="<%= big.imageurl %>">
 			<% unless big.imageurl == nil %>
+			
 			<% url = "http://#{big.imageurl}" if URI.parse(big.imageurl).scheme.nil? %>
   <% host = URI.parse(big.imageurl).host.downcase %>
   <% url = host.start_with?('www.') ? host[4..-1] : host %>
   <% end %>
   <%= truncate(url, :length => 28) %>
-</a>
 </center>
 </div>
 		</div>
