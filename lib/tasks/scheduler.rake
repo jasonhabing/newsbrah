@@ -244,6 +244,19 @@ task :clear_olditems => :environment do
 FeedItem.where("created_at <= :created_at and big_story_id IS NULL",
   {created_at: 60.days.ago}).delete_all
 
+@bigs = BigStory.where(published: 0).order(:created_at).reverse
+
+@bigs.each do |big|
+
+if big.created_at < (Time.now - 2.days) and big.feed_items.count < 8
+
+big.published = 3
+big.save
+
+end
+
+end
+
 # puts "deleted #{@count} feed items that were older than 60 days and had no big story"
 
 end
