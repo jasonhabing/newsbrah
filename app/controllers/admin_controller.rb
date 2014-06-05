@@ -89,7 +89,14 @@ class AdminController < ApplicationController
 
 
 def edit
-    @bigs = BigStory.where(published: 1).order("score DESC").limit(100)
+
+    @count = params[:s].to_i
+
+        if @count == 0
+        @count = 15
+        end
+
+    @bigs = BigStory.where(published: 1).order("score DESC").limit(@count)
 end
 
 def editfeed
