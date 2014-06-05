@@ -75,7 +75,7 @@
 <div class="cite"><center>
 	<% url = nil %>
 			<% unless big.imageurl == nil %>
-			
+
 			<% url = "http://#{big.imageurl}" if URI.parse(big.imageurl).scheme.nil? %>
   <% host = URI.parse(big.imageurl).host.downcase %>
   <% url = host.start_with?('www.') ? host[4..-1] : host %>
@@ -114,8 +114,12 @@
 	</div>
 <div class="visible-xs">
 <br><br>
+
 </div>
 </div>
+
+
+
 <% if [2, 4, 6, 8, 10].include? i %>
 <div class="clearfix"></div>
 <% end %>
