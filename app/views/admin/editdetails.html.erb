@@ -9,11 +9,11 @@
 
 <% id = params[:id] %>
 <% big = BigStory.where(:id => id).first %>
-<% bullets = Bullet.where(:big_story_id => big.id) %>
+<% bullets = Bullet.where(:big_story_id => big.id).order("rank ASC") %>
 <%= best_in_place big, :id %>
 <h4><%= best_in_place big, :title, type: :textarea %></h4>
 <br>
-<%= best_in_place big, :description, type: :textarea %><br><br>
+
 
 <% bullets.each do |bullet| %>
 Bullet <%= best_in_place bullet, :rank %>: <%= best_in_place bullet, :content, type: :textarea %><br>
@@ -69,7 +69,7 @@ Bullet <%= best_in_place bullet, :rank %>: <%= best_in_place bullet, :content, t
 <br><br>
 
 <% big.feed_items.each do |feed| %>
-<a href="<%= feed.url %>"><%= feed.title %></a><br>
+<a href="<%= feed.url %>" target="blank"><%= feed.title %></a><br>
 <div style="width:100px;height:15px;margin-top:5px; margin-bottom:10px">
 <%= best_in_place feed, :big_story_id %>
 </div><br><br>

@@ -1,19 +1,20 @@
 <div class="container">
-<h2>Front Page</h2>
-<p>click anything to edit. warning: will edit immediately</p>
+<h2>Last 100 based on score</h2>
 	<br><br>
 <% @bigs.each do |big| %>
 
- <a href="/admin/<%= big.id %>" style="color:blue">manage linked stories </a> &nbsp;&nbsp;|&nbsp;&nbsp;  <a href="/admin/details/<%= big.id %>" style="color:blue">edit desc/image </a><br>
+<% bullets = Bullet.where(:big_story_id => big.id).order("rank ASC") %>
 <b>Title:</b> <%= best_in_place big, :title %><br>
 <b>Mentions:</b> <%= big.feed_items.count %><br>
-<b>Description</b> <%= best_in_place big, :description, type: :textarea %><br>
-<b>Image</b> <%= best_in_place big, :imageurl %><br>
 <img src="<%= big.imageurl %>" width="200px"/><br>
 <b>Created_at</b> <%= big.created_at %><br>
 <b>Score</b> <%= best_in_place big, :score %><br>
 <b>ID</b> <%= best_in_place big, :id %><br>
+<% bullets.each do |bullet| %>
+<b>Bullet <%= best_in_place bullet, :rank %></b> - <%= best_in_place bullet, :content %><br>	
+<% end %>
 <b>Published</b> <%= best_in_place big, :published %><br>
+<a href="/admin/details/<%= big.id %>" style="color:blue">edit details </a><br>
 
 <br>
 

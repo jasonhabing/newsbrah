@@ -18,7 +18,7 @@
 	</div>
 	<div class="lead-description">
 		<table class="table">
-		 <% bullets = Bullet.where(:big_story_id => big.id) %>
+		 <% bullets = Bullet.where(:big_story_id => big.id).order("rank ASC") %>
 		 <% bullets.each do |bullet| %>
 		 <% unless bullet.content == nil %>
 		 	<tr>
@@ -60,7 +60,7 @@
 		<% unless big.description == nil %>	
 	
 		<table class="table">
-		 <% bullets = Bullet.where(:big_story_id => big.id) %>
+		 <% bullets = Bullet.where(:big_story_id => big.id).order("rank ASC") %>
 		 <% bullets.each do |bullet| %>
 		 <% unless bullet.content == nil %>
 		 	<tr>
