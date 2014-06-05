@@ -1,10 +1,13 @@
+<h1>Stories that need bullet update:</h1>
+
 
 <% @bigs.each do |big| %>
 
-<h2>Edit Story Data</h2>
 
 <% id = params[:id] %>
 <% bullets = Bullet.where(:big_story_id => big.id) %>
+<% if bullets.first.content == nil %>
+<h3>Edit Story Data</h3>
 <%= best_in_place big, :id %>
 <h4><%= best_in_place big, :title, type: :textarea %></h4>
 <br>
@@ -20,5 +23,5 @@ Bullet <%= best_in_place bullet, :rank %>: <%= best_in_place bullet, :content, t
 
 
 <h4>Published <span style="color:red;font-size:24px;"><%= best_in_place big, :published %></span></h4>
-
+<% end %>
 <% end %>
