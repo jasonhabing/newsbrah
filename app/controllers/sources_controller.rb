@@ -40,7 +40,7 @@ class SourcesController < ApplicationController
   def paper
     @subdomain = request.subdomain
     @bigs = BigStory.where(published: 1).order("score DESC").limit(20)
-
+    @title = "Cobiased - News made simple."
   end
 
 
@@ -471,7 +471,11 @@ bigstories = BigStory.find(:all, :order => "id desc", :limit => @storycount)
   def story
 
     @big = BigStory.find(params[:id])
-
+    @title = @big.title
+    @type = "article"
+    @image = @big.imageurl
+    @url = "http://www.cobiased.com/story/#{@big.id}"
+    @description = Bullet.where(:big_story_id => @big.id).first.content
 # inefficient trace code
 #     @storycount = 250  
 # @bigwordmin = 4  #should be 4

@@ -31,6 +31,7 @@ NewsApp::Application.routes.draw do
   match 'unpublished' => 'admin#unpublished'
   match 'fetch/:id' => 'admin#imgfetch'
   match 'bulletfix' => 'admin#bulletfix'
+  match 'feedback' => 'sources#feedback'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
