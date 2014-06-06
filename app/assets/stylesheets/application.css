@@ -73,6 +73,18 @@ color:#bcbcbc;
 	color: black;
 }
 
+.lead-title-mobile a {
+	font-size: 28px;
+	text-align: justify;
+	color: black;
+}
+
+.lead-title-mobile {
+	font-size: 28px;
+	text-align: justify;
+	color: black;
+}
+
 img.lead_image {
 
 	padding-top: 10px;
