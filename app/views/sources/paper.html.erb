@@ -27,6 +27,18 @@
 	<div class="lead-title"><b><a href="/story/<%= big.id %>"><%= big.title %></a></b></div>
 	<div class="lead-mentions">Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
+
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style " style="padding-top:10px" addthis:url="http://stage1.cobiased.com/story/<%= big.id %>">
+<a class="addthis_button_twitter"></a>
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_google"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-538e7d73733b9229"></script>
+<!-- AddThis Button END -->
+
+
 	<div class="lead-description">
 		<table class="table">
 		 <% bullets = Bullet.where(:big_story_id => big.id).order("rank ASC") %>
@@ -42,6 +54,7 @@
 		</table>
 
 	</div>
+
 </div>
 
 
@@ -93,6 +106,18 @@
 	<div class="story-mentions">
 	Mentioned in <%= big.feed_items.count %> news outlets
 	</div>
+
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style " style="padding-top:10px" addthis:url="http://stage1.cobiased.com/story/<%= big.id %>">
+<a class="addthis_button_twitter"></a>
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_google"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-538e7d73733b9229"></script>
+<!-- AddThis Button END -->
+
+
 	</div>
 	<div class="clearfix"></div>
 	<div class="story-description">
